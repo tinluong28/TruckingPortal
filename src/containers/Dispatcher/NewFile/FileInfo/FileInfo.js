@@ -6,7 +6,7 @@ class FileInfo extends Component {
     state={
         fileNo: '',
         mode: '',
-        hot: false,
+        hot: true,
         customer: '',
     }
     render() {
