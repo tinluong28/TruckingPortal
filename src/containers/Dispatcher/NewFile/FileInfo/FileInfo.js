@@ -8,7 +8,6 @@ class FileInfo extends Component {
         mode: '',
         hot: false,
         customer: '',
-
     }
     render() {
         return (
