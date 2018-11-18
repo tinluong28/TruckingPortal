@@ -1,0 +1,8 @@
+.AddContainerControl button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.AddContainerControl button:hover {
+    text-decoration: underline;
+}

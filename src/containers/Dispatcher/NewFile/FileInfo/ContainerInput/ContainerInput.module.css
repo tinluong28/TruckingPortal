@@ -1,0 +1,49 @@
+.ContainerInput {
+    float: left;
+    margin: 70px auto;
+    width: 102%;
+    background: white;
+    border-radius: 8px;
+    border-top: 5px solid #FF7E00;
+    text-align: left;
+    padding-bottom:50px;
+    padding-left: 30px;
+    padding-right: 0;
+
+}
+
+.ContainerInput .Input {
+    padding: 0;
+}
+
+.ContainerInput .Input input {
+    border-radius: 8px;
+    padding: 8px 5px;
+    border: solid 3px #FF7E00;
+    margin: 3px;
+    outline: none;
+}
+
+
+.Input  button {
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    margin-left: 2px;
+    font-weight: bold;
+    background: linear-gradient(180deg,#3482e3 0,#3451e3 100%);
+    color: white;
+    padding: 1px 8px;
+    border-radius: 10px;
+}
+
+.Input button:hover {
+    background: linear-gradient(180deg,#3482e3 0,#586fe2 100%);
+}
+
+
+
+.ContainerInput .Display th {
+    float: left;
+}
+

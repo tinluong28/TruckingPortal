@@ -1,0 +1,21 @@
+.Footer {
+    background-color: rgb(214, 207, 207);
+    display: block;
+    height: 100px;
+    margin: 0 0 -100px 0;
+    padding: 20px;
+}
+
+.SignOut ul {
+    display: block;
+}
+.SignOut ul li {
+    list-style: none;
+    font-size: 12px;
+    text-align: right;
+    float: right;
+}
+
+.SignOut ul li button{
+    font-size: 12px;
+}

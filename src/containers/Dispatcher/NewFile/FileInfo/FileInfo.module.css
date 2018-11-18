@@ -1,0 +1,75 @@
+.File {
+    background: white;
+    width: 60%;
+    border-radius: 8px;
+    padding: 40px 0;
+    padding-right: 50px;
+    margin-top: 110px;
+    margin-left: 50px;
+    border-top: 5px solid #FF7E00;
+}
+.Container {
+    width: 140%
+}
+
+.Customer {
+    float: left;
+    height: 100%;
+    display: block;
+    width: 50%;
+}
+
+.Customer input {
+    padding: 3px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: none;
+
+}
+
+.Customer input:focus {
+    border: solid 3px rgb(98, 167, 223);
+}
+
+.Customer select {
+    padding: 2px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    outline: none;
+}
+
+.Customer select:focus {
+    border: solid 3px rgb(98, 167, 223);
+}
+
+.Ams {
+
+    display: block;
+    padding-bottom: 3px;
+    
+}
+
+
+.Ams input {
+    padding: 3px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: none;
+
+}
+
+.Ams input:focus {
+    border: solid 3px rgb(98, 167, 223);
+}
+
+.Section {
+    margin-bottom: 8px;
+}
+
+.Label {
+    float: left;
+    width: 100px; 
+    text-align: right;
+    font-size: 15px;
+    padding-right: 15px;
+}

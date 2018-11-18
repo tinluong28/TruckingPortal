@@ -1,0 +1,71 @@
+.DeliveryInfo {
+        background: white;
+        width: 80%;
+        margin: 110px auto;
+        border-radius: 8px;
+        padding: 40px 0;
+        border-top: 5px solid #FF7E00;
+        display: grid;
+        grid-template-columns: 1fr 2fr 3fr;
+}
+
+.Title {
+    grid-column: 1/4;
+    padding-left: 20px;
+}
+
+
+.Delivery {
+    padding: 50px;
+    height: 100%;
+    display: table-cell;
+    background-color: aliceblue;
+    grid-column: 1/3;
+
+}
+
+.Delivery label {
+    padding-right: 15px;
+    font-weight: bold;
+
+}
+.Delivery input {
+    text-align: left;
+    padding: 3px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 70%;
+    margin: 5px;
+    outline: none;
+
+}
+
+.Delivery input:focus {
+    border: solid 3px rgb(98, 167, 223);
+}
+
+.Remark {
+    padding: 50px;
+    text-align: left;
+    height: 100%;
+    display: table-cell;
+    background-color: aliceblue;
+
+}
+
+.Remark label {
+    width: 40%;
+    padding-right: 15px;
+    font-weight: bold;
+
+}
+
+.Remark textarea {
+    width: 70%;
+    height: 100px;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+.Remark textarea:focus {
+    border: solid 3px rgb(39, 115, 228);
+}

@@ -1,0 +1,44 @@
+.LiveStatus {
+    margin: 50px 120px;
+    padding: 16px 10px;
+    text-align: center;
+    justify-content: space-evenly;
+    background-color: white;
+}
+
+.LiveStatus h2 {
+
+    font-size: 35px;
+    color: red;
+}
+
+.LiveStatus table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgb(97, 179, 211);
+
+}
+
+.LiveStatus table thead {
+    font-weight: bold;
+}
+
+.LiveStatus table tr:nth-child(even) {
+    background-color: #ecdada;
+}
+
+.LiveStatus table tbody tr:hover {
+    background-color: #e9b2b2;
+}
+
+.LiveStatus table td:nth-last-child(1) {
+    color: red;
+}
+
+@media (max-width: 600px) {
+    .LiveStatus {
+        display: none;
+
+    }
+}

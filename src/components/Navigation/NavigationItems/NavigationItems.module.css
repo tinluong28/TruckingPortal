@@ -1,0 +1,104 @@
+
+
+.NavigationItems ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.NavigationItems ul li{
+    float: left;
+    text-align: left;
+    width: 11em;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.Link{
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-weight: bold;
+    background-color: #FF7E00;
+    font-size: 14px;
+    padding: 0;
+}
+.Items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1ft;
+
+}
+.Home {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-weight: bold;
+    grid-column: 1;
+}
+
+.Dispatcher {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-weight: bold;
+    grid-column: 1/2;
+    padding-bottom: 5px;
+}
+
+.Clients {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-weight: bold;
+    grid-column: 2/3;
+    padding-bottom: 5px;
+}
+
+.Accounting {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-weight: bold;
+    grid-column: 3/4;
+    padding-bottom: 5px;
+}
+
+.Admin {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-weight: bold;
+    grid-column: 4/5;
+    padding-bottom: 5px;
+}
+
+.NavigationItems ul li ul li{
+    display: none;
+}
+
+.NavigationItems ul li:hover ul li{
+    display: block;
+}
+
+
+
+.NavigationItems ul li:hover,
+.NavigationItems ul li:active,
+.NavigationItems ul li.active {
+    border-bottom: rgb(107, 221, 113) 3px solid;
+}
+
+.NavigationItems ul li ul li:hover{
+    border-bottom: rgb(107, 221, 113) 3px solid;
+}
+
+@media (max-width: 600px) {
+    .NavigationItems {
+        display: none;
+
+    }
+}

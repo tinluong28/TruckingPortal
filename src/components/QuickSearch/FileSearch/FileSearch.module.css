@@ -1,0 +1,122 @@
+.Main {
+    width: 500px;
+    text-align: center;
+    display: block;
+    margin: 200px auto 350px 100px;
+    border-radius: 10px;
+    padding-bottom: 0px;
+    padding-top: 0;
+    background-color: white;
+
+}
+.Main ul {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+
+}
+.Main ul li {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.Button {
+    background-color: transparent;
+    border: white 2px solid;
+    border-radius: 30px;
+    padding: 8px 15px 2px 15px;
+    margin: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+}
+
+.Button:hover {
+    background-color: blue;
+    border-color: blue;
+}
+.Main input {
+    background-color: white;
+    outline: none;
+    border-radius: 30px;
+    padding: 8px 15px 3px 15px;
+    border: gray 2px solid;
+    font-size: 18px;
+}
+
+
+.TrackSelected {
+    background-color: #FF7E00;
+}
+
+.DispatcherSelected {
+    background-color: #FF7E00;
+}
+
+.TrackDarken {
+    background: linear-gradient(100deg, orange 95%,#a3988e 5%);
+}
+
+.DispatcherDarken {
+    background: linear-gradient(80deg ,#a3988e 54%, orange 46%);
+}
+.Console {
+    display: block;
+    text-align: center;
+}
+
+.Console div li{
+    text-align: center;
+    padding: 10px 50px;
+    list-style: none;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.Track {
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    background-color: #FF7E00;
+    padding: 20px 10px;
+    width: 110%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+
+.Dispatcher {
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    background-color: #FF7E00;;
+    padding: 20px 10px;
+    width: 110%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.Hidden{
+    display: none;
+}
+
+
+@media (max-width: 600px) {
+    .Main {
+        margin: 200px 0 350px 0;
+
+    }
+}

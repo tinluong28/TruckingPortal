@@ -1,0 +1,43 @@
+.Header {
+    background-color: transparent;
+
+    margin-top: -16px;
+}
+
+.CompanyName {
+    text-align: left;
+    display: block;
+    float: left;
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    padding-left: 20px;
+}
+
+.Nav {
+    padding-top: 50px;
+}
+.SignOut ul {
+    display: block;
+}
+.SignOut ul li {
+    list-style: none;
+    font-size: 12px;
+    text-align: right;
+    float: right;
+}
+
+.SignOut ul li button{
+    font-size: 12px;
+}
+
+
+
+
+
+
+
+@media (max-width: 499px) {
+    .DesktopOnly {
+        display: none;
+    }
+}

@@ -1,0 +1,55 @@
+.AccountingNav {
+    list-style: none;
+    float: left;
+    text-align: left;
+    display: block;
+    position: absolute;
+    margin: 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: auto;
+
+}
+
+.AccountingNav li {
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    width: auto;
+
+}
+
+.AccountingNav li ul li {
+    display: none;
+}
+
+.AccountingNav li:hover ul li {
+    display: block;
+    background-color: black;
+    
+}
+
+
+.AccountingNav li ul li a {
+    float: left;
+    color: white;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    padding-top: 0;
+    padding-left: 3px;
+    border-bottom: 2px solid transparent;
+    box-sizing: border-box;
+}
+
+.AccountingNav li ul li a:hover,
+.AccountingNav li ul li a:active,
+.AccountingNav li ul li a.active {
+
+    border-bottom: 4px solid rgb(177, 31, 12);
+    color: white;
+}

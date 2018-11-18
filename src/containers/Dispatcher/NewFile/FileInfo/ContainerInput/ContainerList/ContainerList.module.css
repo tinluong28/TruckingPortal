@@ -1,0 +1,92 @@
+.ContainerList {
+    width: 100%;
+    margin-top: 20px;
+    display: inline-block;
+
+}
+
+.ContainerList .Name {
+    border: solid 2px green;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    margin: 0 auto;
+    padding: 7px;
+
+}
+
+.Name:hover{
+    background-color: pink;
+}
+
+.ContainerList td {
+    float: left;
+
+}
+
+
+.Dangerous {
+    margin-top: 10px;
+}
+.Dangerous button {
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    margin-left: 2px;
+    font-weight: bold;
+    background: linear-gradient(180deg,#fc536f 0,#db0909 100%);
+    border: none;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.Dangerous button:hover {
+    background: linear-gradient(180deg,#fc536f 0,#db0909 18%);
+    
+}
+.Edit {
+    margin-top: 10px;
+}
+
+.Edit button {
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    margin-left: 2px;
+    font-weight: bold;
+    background: blue;
+    border: none;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.Edit button:hover {
+    background: linear-gradient(180deg,#3482e3 0,#586fe2 100%);
+    
+}
+
+.Details {
+    display: block;
+    width: 100%;
+}
+
+.Hidden {
+    display: none;
+}
+
+
+.Table tr {
+    width: 100%;
+    right: 0;
+    padding: 20px auto;
+}
+
+.Table tr:nth-child(even) {
+    background-color: #ecdada;
+}
+
+.Table tbody tr:hover {
+    background-color: #e9b2b2;
+}

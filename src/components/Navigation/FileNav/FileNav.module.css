@@ -1,0 +1,63 @@
+.FileNav {
+    text-align: left;
+    margin: 0;
+    width: 500px;
+    height: 40px;
+    display: inline-block;
+    padding: 5px;
+    z-index: -10px;
+}
+
+
+
+.FileNav ul {
+    margin: 0;
+    list-style: none;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding-left: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    z-index: -1;
+}
+
+.FileNav ul li{
+    float: left;
+    padding-right: 20px;
+    text-decoration-line: none;
+
+    padding-top: 10px;
+}
+
+.FileNav ul li label {
+    text-decoration: none;
+    color: black;
+    font-size: 25px
+}
+
+.FileNav ul li a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px
+
+}
+
+.FileNav ul li ul li {
+    margin: auto;
+    display: inline-block;
+    margin-bottom: 0;
+
+}
+
+.FileNav ul li:first-of-type {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.FileNav ul li ul li:hover {
+    text-decoration: underline;
+    font-size: 15px;
+}

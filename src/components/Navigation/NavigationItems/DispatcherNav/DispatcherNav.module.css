@@ -1,0 +1,53 @@
+.DispatcherNav {
+    list-style: none;
+    float: left;
+    text-align: left;
+    display: block;
+    position: absolute;
+    margin: 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: auto;
+
+}
+
+.DispatcherNav li {
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    width: auto;
+}
+
+.DispatcherNav li ul li {
+    display: none;
+}
+
+.DispatcherNav li:hover ul li {
+    display: block;
+    background-color: black;
+}
+
+
+.DispatcherNav li ul li a {
+    float: left;
+    color: white;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    padding-top: 0;
+    padding-left: 3px;
+    border-bottom: 2px solid transparent;
+    box-sizing: border-box;
+}
+
+.DispatcherNav li ul li a:hover,
+.DispatcherNav li ul li a:active,
+.DispatcherNav li ul li a.active {
+
+    border-bottom: 4px solid rgb(177, 31, 12);
+    color: white;
+}
