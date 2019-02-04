@@ -1,0 +1,254 @@
+img {
+  width: 100%;
+}
+
+.landing {
+  position: relative;
+  background: url("./img/outer-space.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-top: -60px;
+  margin-bottom: -50px;
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-form {
+  opacity: 0.9;
+}
+
+.latest-profiles-img {
+  width: 40px;
+  height: 40px;
+}
+
+.form-control::placeholder {
+  color: #bbb !important;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.login {
+  position: relative;
+  background: url("./img/port.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-top: 0;
+  margin-bottom: -50px;
+  color: white;
+  font-weight: bold;
+}
+
+.navigation {
+  background-color: #c1043d;
+}
+
+.EmailList {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  font-style: italic;
+}
+
+.FileInput {
+  font-size: 13px;
+}
+
+.ContainerInput {
+  width: 75%;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.ContainerDetails {
+  font-size: 12px;
+}
+
+.Backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100px;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Modal {
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  width: 70%;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px black;
+  padding: 16px;
+  left: 15%;
+  top: 30%;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+}
+
+/*Select Compact*/
+
+.SelectCompact_control {
+  min-height: 12rem;
+}
+
+/*Checkbox CSS*/
+.CheckboxContainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-top: 7px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.CheckboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.Checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 17px;
+  width: 17px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.CheckboxContainer:hover input ~ .Checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.CheckboxContainer input:checked ~ .Checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.Checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.CheckboxContainer input:checked ~ .Checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.CheckboxContainer .Checkmark:after {
+  left: 0.4em;
+  top: 0.2em;
+  width: 0.5em;
+  height: 0.9em;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*Create Radio Buttons*/
+/* Customize the label (the container) */
+.RadioContainer {
+  display: inline-block;
+
+  position: relative;
+  padding-left: 15px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.RadioContainer input {
+  position: inline-block;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.RadioButton {
+  border: 1px;
+  padding: 3px 2px 3px 2px;
+  right: 0;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 25px;
+  background-color: rgb(153, 229, 248);
+  border-radius: 2%;
+}
+
+/* On mouse-over, add a grey background color */
+/* .RadioContainer:hover input ~ .RadioButton {
+  background-color: #ccc;
+} */
+
+/* When the radio button is checked, add a blue background */
+/* .RadioContainer input:checked ~ .RadioButton {
+  background-color: #2196f3;
+} */
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+/* .RadioButton:after {
+  content: "";
+  position: absolute;
+  display: none;
+} */
+
+/* Show the indicator (dot/circle) when checked */
+/* .RadioContainer input:checked ~ .RadioButton:after {
+  display: block;
+} */
+
+/* Style the indicator (dot/circle) */
+/* .RadioContainer .RadioButton:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+} */
