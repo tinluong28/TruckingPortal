@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./util/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -155,6 +155,9 @@ class App extends Component {
                 path="/order/create-order"
                 component={DeliveryOrder}
               />
+            </Switch>
+            <Switch>
+              <Route render={() => <h1>Not Found</h1>} />
             </Switch>
           </div>
           <Footer />
