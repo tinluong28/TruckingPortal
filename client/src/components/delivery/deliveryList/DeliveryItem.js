@@ -8,7 +8,7 @@ class DeliveryItem extends Component {
   render() {
     const { delivery } = this.props;
     let emailList;
-    if (delivery.contact.length > 1) {
+    if (delivery.contact.length > 0) {
       emailList = delivery.contact.map(con => {
         if (con.email) {
           return (

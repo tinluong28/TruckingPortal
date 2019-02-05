@@ -85,7 +85,7 @@ export const addCustomer = (customerData, history) => dispatch => {
 // Add Contact in Customer
 export const addContact = (id, contactData) => dispatch => {
   axios
-    .post(`/api/customers/add-contact//${id}`, contactData)
+    .post(`/api/customers/add-contact/${id}`, contactData)
     .then(res =>
       dispatch({
         type: GET_CUSTOMER,
