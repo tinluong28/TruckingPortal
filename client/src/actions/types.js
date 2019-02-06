@@ -28,6 +28,7 @@ export const ADD_CONTACT = "ADD_CONTACT";
 
 export const GET_FILE = "GET_FILE";
 export const GET_FILES = "GET_FILES";
+export const GET_CONTAINER = "GET_CONTAINER";
 export const FILE_NOT_FOUND = "FILE_NOT_FOUND";
 export const FILE_LOADING = "FILE_LOADING";
 export const CLEAR_CURRENT_FILE = "CLEAR_CURRENT_FILE";

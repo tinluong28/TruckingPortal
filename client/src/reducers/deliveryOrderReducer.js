@@ -1,6 +1,7 @@
 import {
   GET_FILE,
   GET_FILES,
+  GET_CONTAINER,
   FILE_LOADING,
   CLEAR_CURRENT_FILE,
   CLEAR_CURRENT_FILES
@@ -9,6 +10,7 @@ import {
 const initialState = {
   file: {},
   files: [],
+  container: {},
   loading: false
 };
 
@@ -29,6 +31,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         files: action.payload,
+        loading: false
+      };
+    case GET_CONTAINER:
+      return {
+        ...state,
+        container: action.payload,
         loading: false
       };
     case CLEAR_CURRENT_FILE:

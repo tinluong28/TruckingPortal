@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {
   GET_FILE,
+  GET_CONTAINER,
   GET_FILES,
   FILE_LOADING,
   CLEAR_CURRENT_FILE,
@@ -86,6 +87,37 @@ export const addFile = (fileData, history) => dispatch => {
 export const addContainer = (id, containerData) => dispatch => {
   axios
     .post(`/api/file/add-container/${id}`, containerData)
+    .then(res =>
+      dispatch({
+        type: GET_FILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+export const getCurrentContainer = (DO, containerNumber) => dispatch => {
+  const currentContainer = DO.containers.filter(container => {
+    container.number === containerNumber;
+  });
+  dispatch({
+    type: GET_CONTAINER,
+    payload: currentContainer
+  });
+};
+
+export const updateContainer = (
+  fileID,
+  containerID,
+  containerData
+) => dispatch => {
+  axios
+    .put(`/api/file/update-container/${fileID}/${containerID}`)
     .then(res =>
       dispatch({
         type: GET_FILE,

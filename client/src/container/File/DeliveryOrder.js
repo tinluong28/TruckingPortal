@@ -11,6 +11,8 @@ import {
   updateCurrentFile,
   deleteFile,
   addContainer,
+  updateContainer,
+  getCurrentContainer,
   deleteContainer,
   clearCurrentFile
 } from "../../actions/deliveryOrderActions";
@@ -82,7 +84,8 @@ class DeliveryOrder extends Component {
         advanceDocsFee: false,
         docsFee: "",
         remark: "",
-        delivery: []
+        delivery: [],
+        _id: ""
       },
       deliveryInput: {
         location: {
@@ -198,6 +201,18 @@ class DeliveryOrder extends Component {
       }
     });
   };
+
+  updateContainer = e => {
+    e.preventDefault();
+    const { deliveryOrder } = this.state;
+    const { ...containerInput, _id } = this.state.containerInput;
+    this.props.updateContainer(deliveryOrder._id, _id, containerInput );
+  }
+
+  onViewContainer = containerNumber => {
+    this.props.getCurrentContainer(containerNumber)
+    this.setState({containerInput: this.props.deliveryOrder.container})
+  }
 
   handleFileChange = (name, value) => {
     this.setState({
@@ -340,7 +355,9 @@ DeliveryOrder.propTypes = {
   addFile: PropTypes.func.isRequired,
   updateCurrentFile: PropTypes.func.isRequired,
   deleteFile: PropTypes.func.isRequired,
-  addCpntainer: PropTypes.func.isRequired,
+  addContainer: PropTypes.func.isRequired,
+  updateContainer: PropTypes.func.isRequired,
+  getCurrentContainer: PropTypes.func.isRequired,
   deleteContainer: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   deliveryOrder: PropTypes.object.isRequired
@@ -360,6 +377,8 @@ export default connect(
     updateCurrentFile,
     deleteFile,
     addContainer,
+    updateContainer,
+    getCurrentContainer,
     deleteContainer,
     clearCurrentFile
   }
