@@ -24,21 +24,11 @@ class DeliveryOrder extends Component {
     super(props);
     this.state = {
       file: {
-        mode: "FCL",
-        fileCode: "DTF",
+        mode: "",
+        fileCode: "",
         fileNo: "",
-        status: "STANDARD",
-        customer: {
-          name: "",
-          address: "",
-          city: "",
-          state: "",
-          zipcode: "",
-          contact: "",
-          name: "",
-          phone: "",
-          email: ""
-        },
+        status: "",
+        customer: "",
         eta: "",
         entryDate: "",
         carrier: "",
@@ -46,8 +36,9 @@ class DeliveryOrder extends Component {
         house: "",
         terminal: "",
         tentativelfd: "",
-        devan: "NO",
-        containers: []
+        devan: "",
+        containers: [],
+        _id: ""
       },
       containerInput: {
         number: "",
@@ -91,7 +82,6 @@ class DeliveryOrder extends Component {
         advanceDocsFee: false,
         docsFee: "",
         remark: "",
-        fee: [],
         delivery: []
       },
       deliveryInput: {
@@ -116,11 +106,98 @@ class DeliveryOrder extends Component {
         deliverDimensionAmount: "",
         deliverDimensionUnit: "CBM"
       },
+      edit: false,
       errors: {}
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      this.props.getCurrentCustomer(this.props.match.params.id);
+    } else {
+      this.setState({ edit: true });
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.clearCurrentCustomer();
+  }
+
+  componentWillReceiveProps(nextProp) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+    if (nexProps.deliveryOrder.deliveryOrder) {
+      const { deliveryOrder } = nextProps.deliveryOrder;
+      deliveryOrder.mode = !isEmpty(deliveryOrder.mode)
+        ? deliveryOrder.mode
+        : "FCL";
+      deliveryOrder.fileCode = !isEmpty(deliveryOrder.fileCode)
+        ? deliveryOrder.fileCode
+        : "DTF";
+      deliveryOrder.fileNo = !isEmpty(deliveryOrder.fileNo)
+        ? deliveryOrder.fileNo
+        : "";
+      deliveryOrder.status = !isEmpty(deliveryOrder.status)
+        ? deliveryOrder.status
+        : "STANDARD";
+      deliveryOrder.customer = !isEmpty(deliveryOrder.customer)
+        ? deliveryOrder.customer
+        : "";
+      deliveryOrder.eta = !isEmpty(deliveryOrder.eta) ? deliveryOrder.eta : "";
+      deliveryOrder.entryDate = !isEmpty(deliveryOrder.entryDate)
+        ? deliveryOrder.entryDate
+        : Date.now();
+      deliveryOrder.carrier = !isEmpty(deliveryOrder.carrier)
+        ? deliveryOrder.carrier
+        : "";
+      deliveryOrder.master = !isEmpty(deliveryOrder.master)
+        ? deliveryOrder.master
+        : "";
+      deliveryOrder.house = !isEmpty(deliveryOrder.house)
+        ? deliveryOrder.house
+        : "";
+      deliveryOrder.terminal = !isEmpty(deliveryOrder.terminal)
+        ? deliveryOrder.terminal
+        : "";
+      deliveryOrder.tentativelfd = !isEmpty(deliveryOrder.tentativelfd)
+        ? deliveryOrder.tentativelfd
+        : "";
+      deliveryOrder.devan = !isEmpty(deliveryOrder.devan)
+        ? deliveryOrder.devan
+        : "NO";
+      this.setState({
+        deliveryOrder: {
+          mode: deliveryOrder.mode,
+          fileCode: deliveryOrder.fileCode,
+          fileNo: deliveryOrder.fileNo,
+          status: deliveryOrder.status,
+          customer: deliveryOrder.customer,
+          eta: deliveryOrder.eta,
+          entryDate: deliveryOrder.entryDate,
+          carrier: deliveryOrder.carrier,
+          master: deliveryOrder.master,
+          house: deliveryOrder.house,
+          terminal: deliveryOrder.terminal,
+          tentativelfd: deliveryOrder.tentativelfd,
+          devan: deliveryOrder.devan,
+          _id: deliveryOrder._id
+        }
+      });
+    }
+  }
+
+  addContainer = e => {
+    e.preventDefault();
+    const { deliveryOrder } = this.state;
+    const { containerInput } = this.state;
+    this.props.addContainer(deliveryOrder._id, containerInput);
+    this.setState({
+      containerInput: {
+        number: ""
+      }
+    });
+  };
 
   handleFileChange = (name, value) => {
     this.setState({

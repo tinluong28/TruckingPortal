@@ -18,8 +18,8 @@ const DeliveryOrderSchema = new Schema({
     type: String
   },
   customer: {
-    type: String,
-    require: true
+    type: Schema.Types.ObjectId,
+    ref: "customer"
   },
   eta: {
     type: String,

@@ -212,6 +212,10 @@ router.post(
           perDiemFee: req.body.perDiemFee,
           advanceDocsFee: req.body.advanceDocsFee,
           docsFee: req.body.docsFee,
+          timeIn: req.body.timeIn,
+          timeOut: req.body.timeOut,
+          waitTime: req.body.waitTime,
+          dryRun: req.body.dryRun,
           remark: req.body.remark
         };
 
@@ -223,6 +227,37 @@ router.post(
       .catch(err =>
         res.status(404).json({ deliveryOrder: "Please try again" })
       );
+  }
+);
+
+// Route PUT api/deliveryOrder/:deliveryOrder_id/container_id
+// Desc     Update container
+// Access   Private
+
+router.put(
+  "/update-container/:deliveryOrder_id/:container_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateContainerInput(req.body);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    DeliveryOrder.findById(req.params.deliveryOrder_id)
+      .then(deliveryOrder => {
+        // Get update index
+        const updateIndex = deliveryOrder.containers
+          .map(item => item.id)
+          .indexOf(req.params.container_id);
+
+        // Splice out of array
+        deliveryOrder.containers[updateIndex] = req.body;
+
+        // Save
+        deliveryOrder.save().then(deliveryOrder => res.json(deliveryOrder));
+      })
+      .catch(err => {
+        res.status(404).json(err);
+      });
   }
 );
 
