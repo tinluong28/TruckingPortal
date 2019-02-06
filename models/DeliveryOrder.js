@@ -168,12 +168,28 @@ const DeliveryOrderSchema = new Schema({
       docsFee: {
         type: String
       },
+      timeIn: {
+        type: String
+      },
+      timeOut: {
+        type: String
+      },
+      waitTime: {
+        type: String
+      },
+      dryRun: {
+        type: String
+      },
       remark: {
         type: String
       },
       delivery: []
     }
   ],
+  preparedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "users"
+  },
   date: {
     type: Date,
     default: Date.now
