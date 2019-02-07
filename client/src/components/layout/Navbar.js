@@ -44,10 +44,10 @@ class Navbar extends Component {
                 Dispatcher <span className="sr-only">(current)</span>
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/order/create-order">
+                <Link className="dropdown-item" to="/file/create-file">
                   New File
                 </Link>
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="/file/all">
                   File List
                 </a>
                 <div className="dropdown-divider" />

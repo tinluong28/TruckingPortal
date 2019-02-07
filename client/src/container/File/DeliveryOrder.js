@@ -83,6 +83,10 @@ class DeliveryOrder extends Component {
         perDiemFee: "",
         advanceDocsFee: false,
         docsFee: "",
+        timeIn: "",
+        timeOut: "",
+        waitTime: "",
+        dryRun: "",
         remark: "",
         delivery: [],
         _id: ""
@@ -116,75 +120,51 @@ class DeliveryOrder extends Component {
 
   componentDidMount() {
     if (this.props.match.params.id) {
-      this.props.getCurrentCustomer(this.props.match.params.id);
+      this.props.getCurrentFile(this.props.match.params.id);
     } else {
       this.setState({ edit: true });
     }
   }
 
   componentWillUnmount() {
-    this.props.clearCurrentCustomer();
+    this.props.clearCurrentFile();
   }
 
-  componentWillReceiveProps(nextProp) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-    if (nexProps.deliveryOrder.deliveryOrder) {
-      const { deliveryOrder } = nextProps.deliveryOrder;
-      deliveryOrder.mode = !isEmpty(deliveryOrder.mode)
-        ? deliveryOrder.mode
-        : "FCL";
-      deliveryOrder.fileCode = !isEmpty(deliveryOrder.fileCode)
-        ? deliveryOrder.fileCode
-        : "DTF";
-      deliveryOrder.fileNo = !isEmpty(deliveryOrder.fileNo)
-        ? deliveryOrder.fileNo
-        : "";
-      deliveryOrder.status = !isEmpty(deliveryOrder.status)
-        ? deliveryOrder.status
-        : "STANDARD";
-      deliveryOrder.customer = !isEmpty(deliveryOrder.customer)
-        ? deliveryOrder.customer
-        : "";
-      deliveryOrder.eta = !isEmpty(deliveryOrder.eta) ? deliveryOrder.eta : "";
-      deliveryOrder.entryDate = !isEmpty(deliveryOrder.entryDate)
-        ? deliveryOrder.entryDate
-        : Date.now();
-      deliveryOrder.carrier = !isEmpty(deliveryOrder.carrier)
-        ? deliveryOrder.carrier
-        : "";
-      deliveryOrder.master = !isEmpty(deliveryOrder.master)
-        ? deliveryOrder.master
-        : "";
-      deliveryOrder.house = !isEmpty(deliveryOrder.house)
-        ? deliveryOrder.house
-        : "";
-      deliveryOrder.terminal = !isEmpty(deliveryOrder.terminal)
-        ? deliveryOrder.terminal
-        : "";
-      deliveryOrder.tentativelfd = !isEmpty(deliveryOrder.tentativelfd)
-        ? deliveryOrder.tentativelfd
-        : "";
-      deliveryOrder.devan = !isEmpty(deliveryOrder.devan)
-        ? deliveryOrder.devan
-        : "NO";
+    if (nextProps.deliveryOrder.file) {
+      const { file } = nextProps.deliveryOrder;
+      file.mode = !isEmpty(file.mode) ? file.mode : "FCL";
+      file.fileCode = !isEmpty(file.fileCode) ? file.fileCode : "DTF";
+      file.fileNo = !isEmpty(file.fileNo) ? file.fileNo : "";
+      file.status = !isEmpty(file.status) ? file.status : "STANDARD";
+      file.customer = !isEmpty(file.customer) ? file.customer : "";
+      file.eta = !isEmpty(file.eta) ? file.eta : "";
+      file.entryDate = !isEmpty(file.entryDate) ? file.entryDate : Date.now();
+      file.carrier = !isEmpty(file.carrier) ? file.carrier : "";
+      file.master = !isEmpty(file.master) ? file.master : "";
+      file.house = !isEmpty(file.house) ? file.house : "";
+      file.terminal = !isEmpty(file.terminal) ? file.terminal : "";
+      file.tentativelfd = !isEmpty(file.tentativelfd) ? file.tentativelfd : "";
+      file.devan = !isEmpty(file.devan) ? file.devan : "NO";
       this.setState({
-        deliveryOrder: {
-          mode: deliveryOrder.mode,
-          fileCode: deliveryOrder.fileCode,
-          fileNo: deliveryOrder.fileNo,
-          status: deliveryOrder.status,
-          customer: deliveryOrder.customer,
-          eta: deliveryOrder.eta,
-          entryDate: deliveryOrder.entryDate,
-          carrier: deliveryOrder.carrier,
-          master: deliveryOrder.master,
-          house: deliveryOrder.house,
-          terminal: deliveryOrder.terminal,
-          tentativelfd: deliveryOrder.tentativelfd,
-          devan: deliveryOrder.devan,
-          _id: deliveryOrder._id
+        file: {
+          mode: file.mode,
+          fileCode: file.fileCode,
+          fileNo: file.fileNo,
+          status: file.status,
+          customer: file.customer,
+          eta: file.eta,
+          entryDate: file.entryDate,
+          carrier: file.carrier,
+          master: file.master,
+          house: file.house,
+          terminal: file.terminal,
+          tentativelfd: file.tentativelfd,
+          devan: file.devan,
+          _id: file._id
         }
       });
     }
@@ -205,14 +185,14 @@ class DeliveryOrder extends Component {
   updateContainer = e => {
     e.preventDefault();
     const { deliveryOrder } = this.state;
-    const { ...containerInput, _id } = this.state.containerInput;
-    this.props.updateContainer(deliveryOrder._id, _id, containerInput );
-  }
+    const { _id, ...containerInput } = this.state.containerInput;
+    this.props.updateContainer(deliveryOrder._id, _id, containerInput);
+  };
 
   onViewContainer = containerNumber => {
-    this.props.getCurrentContainer(containerNumber)
-    this.setState({containerInput: this.props.deliveryOrder.container})
-  }
+    this.props.getCurrentContainer(containerNumber);
+    this.setState({ containerInput: this.props.deliveryOrder.container });
+  };
 
   handleFileChange = (name, value) => {
     this.setState({
@@ -268,7 +248,7 @@ class DeliveryOrder extends Component {
     const containerInput = this.state.containerInput;
     return (
       <div className="col-xl-12">
-        <h1 className="h1 mt-5">Delivery Order</h1>
+        <h1 className="h1 mt-5">File</h1>
         <div className="row mt-4">
           <FileInfo
             fileNo={this.state.file.fileNo}
@@ -364,7 +344,7 @@ DeliveryOrder.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  file: state.file,
+  deliveryOrder: state.deliveryOrder,
   errors: state.errors,
   auth: state.auth
 });

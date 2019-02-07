@@ -26,6 +26,7 @@ import Customer from "./container/Customer/Customer";
 import Delivery from "./container/Delivery/Delivery";
 import DeliveryList from "./components/delivery/deliveryList/DeliveryList";
 import DeliveryOrder from "./container/File/DeliveryOrder";
+import FileList from "./components/file/fileList/FileList";
 import "./App.css";
 
 // Check for token
@@ -145,19 +146,19 @@ class App extends Component {
             <Switch>
               <PrivateRoute
                 exact
-                path="/order/view/:id"
+                path="/file/view/:id"
                 component={DeliveryOrder}
               />
             </Switch>
             <Switch>
               <PrivateRoute
                 exact
-                path="/order/create-order"
+                path="/file/create-file"
                 component={DeliveryOrder}
               />
             </Switch>
             <Switch>
-              <Route render={() => <h1>Not Found</h1>} />
+              <PrivateRoute exact path="/file/all" component={FileList} />
             </Switch>
           </div>
           <Footer />

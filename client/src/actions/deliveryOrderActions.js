@@ -102,9 +102,9 @@ export const addContainer = (id, containerData) => dispatch => {
 };
 
 export const getCurrentContainer = (DO, containerNumber) => dispatch => {
-  const currentContainer = DO.containers.filter(container => {
-    container.number === containerNumber;
-  });
+  const currentContainer = DO.containers.filter(
+    container => container.number === containerNumber
+  );
   dispatch({
     type: GET_CONTAINER,
     payload: currentContainer

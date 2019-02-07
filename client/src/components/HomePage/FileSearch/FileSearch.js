@@ -79,7 +79,7 @@ class FileSearch extends Component {
                 >
                   <button className={"Button"} style={{ float: "left" }}>
                     <Link
-                      to="/order/create-order"
+                      to="/file/create-file"
                       style={{ textDecoration: "none", color: "white" }}
                     >
                       Open New File
