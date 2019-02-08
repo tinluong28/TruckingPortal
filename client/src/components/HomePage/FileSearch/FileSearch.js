@@ -85,7 +85,14 @@ class FileSearch extends Component {
                       Open New File
                     </Link>
                   </button>
-                  <button className={"Button"}>See List</button>
+                  <button className={"Button"}>
+                    <Link
+                      to="/file/all"
+                      style={{ textDecoration: "none", color: "white" }}
+                    >
+                      See List
+                    </Link>
+                  </button>
                 </div>
               </div>
             </li>

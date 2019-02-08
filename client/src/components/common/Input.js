@@ -40,7 +40,7 @@ const input = props => {
             value={props.value}
             name={props.name}
             onChange={props.onChange}
-            className={classnames("form-control form-control-sm h-75 m-0", {
+            className={classnames("form-control", {
               "is-invalid": props.error
             })}
           />
@@ -52,10 +52,37 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-4 col-form-label m-0 mt-2 p-0 pl-2">
+          <label className="col-md-4 col-form-label ml-3">
             <strong>{props.label}</strong>
           </label>
-          <div className="col-md-7">{inputElement}</div>
+          <div className="col-md-6">{inputElement}</div>
+        </div>
+      );
+      break;
+    case "none":
+      inputElement = (
+        <div>
+          <input
+            type={props.type}
+            value={props.value}
+            name={props.name}
+            onChange={props.onChange}
+            className={classnames("form-control", {
+              "is-invalid": props.error
+            })}
+          />
+          {props.info && (
+            <small className="form-text text-muted">{props.info}</small>
+          )}
+          {props.error && <div className="invalid-feedback">{props.error}</div>}
+        </div>
+      );
+      inputElementWithLabel = (
+        <div className="form-group row">
+          <label className="col-md-6 col-form-label">
+            <strong>{props.label}</strong>
+          </label>
+          <div className="col-md-5 pl-0 pr-0">{inputElement}</div>
         </div>
       );
       break;
@@ -90,10 +117,10 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-4 col-form-label m-0 mt-2 p-0 pl-2">
+          <label className="col-md-3 col-form-label">
             <strong>{props.label}</strong>
           </label>
-          <div className="col-md-7">{inputElement}</div>
+          <div className="col-md-4">{inputElement}</div>
         </div>
       );
 

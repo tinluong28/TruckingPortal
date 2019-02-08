@@ -142,7 +142,9 @@ class DeliveryOrder extends Component {
       file.status = !isEmpty(file.status) ? file.status : "STANDARD";
       file.customer = !isEmpty(file.customer) ? file.customer : "";
       file.eta = !isEmpty(file.eta) ? file.eta : "";
-      file.entryDate = !isEmpty(file.entryDate) ? file.entryDate : Date.now();
+      file.entryDate = !isEmpty(file.entryDate)
+        ? file.entryDate
+        : new Date.now();
       file.carrier = !isEmpty(file.carrier) ? file.carrier : "";
       file.master = !isEmpty(file.master) ? file.master : "";
       file.house = !isEmpty(file.house) ? file.house : "";
@@ -248,7 +250,28 @@ class DeliveryOrder extends Component {
     const containerInput = this.state.containerInput;
     return (
       <div className="col-xl-12">
-        <h1 className="h1 mt-5">File</h1>
+        <div className="row bg-warning">
+          <h1 className="pl-3">File</h1>
+        </div>
+        <div className="row bg-secondary">
+          <div className="m-2">
+            <button
+              onClick={this.toggleEdit}
+              className="btn btn-outline-dark"
+              style={{
+                display: this.state.file._id ? "inline-block" : "none"
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              // onClick={props.setDone}
+              className="btn btn-primary ml-3"
+            >
+              Save
+            </button>
+          </div>
+        </div>
         <div className="row mt-4">
           <FileInfo
             fileNo={this.state.file.fileNo}
@@ -270,11 +293,11 @@ class DeliveryOrder extends Component {
             changeMode={this.handleModeChange}
             changeCustomerData={this.handleCustomerChange}
           />
-          <ContainerList
+          {/* <ContainerList
             containerList={this.state.file.containerList}
             containerInput={this.state.containerInput}
             changeData={this.handleContainerChange}
-          />
+          /> */}
         </div>
 
         <ContainerDetails

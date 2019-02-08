@@ -5,11 +5,14 @@ const ContainerDetails = props => {
   return (
     <div className="row">
       <div className="col-xl-12">
-        <div id="accordion">
-          <div
-            className="card"
-            style={{ borderTopColor: "blue", borderTopWidth: "4px" }}
-          >
+        <div
+          className="card"
+          style={{ borderTopColor: "blue", borderTopWidth: "4px" }}
+        >
+          <div className="card-body">
+            <div className="row">
+              <h2>Container Details</h2>
+            </div>
             <Tabs>
               {/* {containers.map(container => (
                 <div label={container.number}>
@@ -63,10 +66,8 @@ const ContainerDetails = props => {
                   />
                 </div>
               ))} */}
-              <div label="CTN#">
-                After 'while, <em>Crocodile</em>!
-              </div>
-              <div label="CTN2">
+
+              <div className="container" label="New">
                 <Details
                   number={props.number}
                   size={props.size}
@@ -115,6 +116,9 @@ const ContainerDetails = props => {
                   changeSelectData={props.changeSelectData}
                   changeData={props.changeData}
                 />
+              </div>
+              <div label="CTN#">
+                After 'while, <em>Crocodile</em>!
               </div>
             </Tabs>
           </div>

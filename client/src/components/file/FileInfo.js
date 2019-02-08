@@ -29,11 +29,11 @@ const FileInfo = props => {
   let devanning = SelectOptions.devanning;
   let statusRadio = RadioOptions.status;
   let FileContent = (
-    <form onSubmit={props.onSubmit}>
+    <div>
       <small>* = required</small>
       <div className="FileInput">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-4">
             <SelectInput
               inputtype="select"
               defaultValue="FCL"
@@ -99,24 +99,8 @@ const FileInfo = props => {
               onChange={onCustomerDataChange}
               placeholder="Customer Name"
             />
-            <Input
-              inputtype="input"
-              label="ETA*"
-              type="date"
-              name="eta"
-              value={props.eta}
-              onChange={onETAChange}
-            />
-            <Input
-              inputtype="input"
-              label="Entry Date*"
-              type="date"
-              name="entryDate"
-              value={props.entryDate}
-              onChange={onDataChange}
-            />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-4">
             <Input
               inputtype="input"
               label="Carrier*"
@@ -153,14 +137,8 @@ const FileInfo = props => {
               onChange={onDataChange}
               placeholder="Terminal"
             />
-            <SelectInput
-              inputtype="select"
-              defaultValue="NO"
-              options={devanning}
-              label="Devanning"
-              value={props.devan}
-              onChange={onSelectChange("devan")}
-            />
+          </div>
+          <div className="col-md-4">
             <Input
               inputtype="input"
               label="Est. LFD"
@@ -169,33 +147,38 @@ const FileInfo = props => {
               value={props.tentativelfd}
               onChange={onDataChange}
             />
+            <Input
+              inputtype="input"
+              label="ETA*"
+              type="date"
+              name="eta"
+              value={props.eta}
+              onChange={onETAChange}
+            />
+            <Input
+              inputtype="input"
+              label="Entry Date*"
+              type="date"
+              name="entryDate"
+              value={props.entryDate}
+              onChange={onDataChange}
+            />
+            <SelectInput
+              inputtype="select"
+              defaultValue="NO"
+              options={devanning}
+              label="Devanning"
+              value={props.devan}
+              onChange={onSelectChange("devan")}
+            />
           </div>
         </div>
       </div>
-      <div className="form-group row">
-        <div className="col-md-10">
-          <button
-            onClick={props.toggleEdit}
-            className="btn btn-outline-dark mr-2"
-            style={{
-              display: props.id ? "inline-block" : "none"
-            }}
-          >
-            Cancel
-          </button>
-          <input
-            type="submit"
-            value={"Save"}
-            // onClick={props.setDone}
-            className="btn btn-primary"
-          />
-        </div>
-      </div>
-    </form>
+    </div>
   );
 
   return (
-    <div className="col-xl-9">
+    <div className="col-xl-12">
       <div
         style={{ borderTopColor: "#c1046b", borderTopWidth: "4px" }}
         className="card card-body mb-3 shadow p-3 mb-5 bg-white rounded"

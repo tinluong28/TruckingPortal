@@ -41,22 +41,22 @@ const SelectInput = props => {
       break;
     case "compactSelect":
       selectElement = (
-        <div className="col-md-8">
+        <div className="col-md-7 ml-0">
           <Select
-            styles={{
-              control: (base, _state) => ({
-                ...base,
-                minHeight: "30px",
-                height: "30px",
-                paddingBottom: "2px",
-                fontSize: "10px",
-                marginRight: "1px"
-              }),
-              indicatorSeparator: base => ({
-                ...base,
-                display: "none"
-              })
-            }}
+            // styles={{
+            //   control: (base, _state) => ({
+            //     ...base,
+            //     minHeight: "30px",
+            //     height: "30px",
+            //     paddingBottom: "2px",
+            //     fontSize: "10px",
+            //     marginRight: "1px"
+            //   }),
+            //   indicatorSeparator: base => ({
+            //     ...base,
+            //     display: "none"
+            //   })
+            // }}
             {...props}
             value={props.options.filter(({ value }) => value === props.value)}
             getOptionLabel={({ label }) => label}
@@ -70,11 +70,37 @@ const SelectInput = props => {
       );
       selectElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label m-0 mt-2 p-0">
+          <label className="col-md-3 col-form-label ml-3 mr-0">
             <strong>{props.label}</strong>
           </label>
           {selectElement}
         </div>
+      );
+      break;
+    case "none":
+      selectElement = (
+        <Select
+          styles={{
+            control: (base, _state) => ({
+              ...base,
+              width: "70px",
+              minHeight: "30px",
+              marginLeft: "0",
+              fontSize: "10px",
+              marginRight: "0"
+            }),
+            indicatorSeparator: base => ({
+              ...base,
+              display: "none"
+            })
+          }}
+          {...props}
+          value={props.options.filter(({ value }) => value === props.value)}
+          getOptionLabel={({ label }) => label}
+          getOptionValue={({ value }) => value}
+          onChange={props.onChange}
+          options={props.options}
+        />
       );
       break;
     default:

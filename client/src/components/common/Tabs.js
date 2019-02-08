@@ -11,7 +11,10 @@ class Tabs extends Component {
     super(props);
 
     this.state = {
-      activeTab: this.props.children[0].props.label
+      activeTab:
+        this.props.children.length > 0
+          ? this.props.children[0].props.label
+          : this.props.children.props.label
     };
   }
 

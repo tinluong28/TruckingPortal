@@ -223,19 +223,21 @@ img {
 
 /*Tabs for containers */
 .tab-list {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2px solid rgb(243, 155, 55);
   padding-left: 0;
 }
 
 .tab-list-item {
   display: inline-block;
   list-style: none;
-  margin-bottom: -1px;
+  margin-bottom: -2px;
   padding: 0.5rem 0.75rem;
 }
 
 .tab-list-active {
   background-color: white;
-  border: solid #ccc;
-  border-width: 1px 1px 0 1px;
+  font-weight: bold;
+  border: solid rgb(243, 155, 55);
+  border-width: 2px 2px 0 2px;
+  border-top-right-radius: 0.4em;
 }
