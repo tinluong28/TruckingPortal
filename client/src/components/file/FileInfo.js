@@ -43,7 +43,7 @@ const FileInfo = props => {
               onChange={onModeChange("mode")}
             />
             <div className="form-group row">
-              <label className="col-md-3 col-form-label mr-0">
+              <label className="col-md-3 col-form-label text-right mr-0">
                 <strong>File No.*</strong>
               </label>
               <div className="col-md-7">
@@ -141,19 +141,20 @@ const FileInfo = props => {
           <div className="col-md-4">
             <Input
               inputtype="input"
-              label="Est. LFD"
-              type="date"
-              name="tentativelfd"
-              value={props.tentativelfd}
-              onChange={onDataChange}
-            />
-            <Input
-              inputtype="input"
               label="ETA*"
               type="date"
               name="eta"
               value={props.eta}
               onChange={onETAChange}
+            />
+
+            <Input
+              inputtype="input"
+              label="Est. LFD"
+              type="date"
+              name="tentativelfd"
+              value={props.tentativelfd}
+              onChange={onDataChange}
             />
             <Input
               inputtype="input"

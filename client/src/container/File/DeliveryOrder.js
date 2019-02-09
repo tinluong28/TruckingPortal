@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import FileInfo from "../../components/file/FileInfo";
 import ContainerList from "../../components/file/ContainerList";
 import ContainerDetails from "../../components/file/ContainerDetail/ContainerDetails";
+import NewContainer from "../../components/file/ContainerDetail/NewContainer";
 import { connect } from "react-redux";
 import {
   getCurrentFile,
@@ -142,9 +143,7 @@ class DeliveryOrder extends Component {
       file.status = !isEmpty(file.status) ? file.status : "STANDARD";
       file.customer = !isEmpty(file.customer) ? file.customer : "";
       file.eta = !isEmpty(file.eta) ? file.eta : "";
-      file.entryDate = !isEmpty(file.entryDate)
-        ? file.entryDate
-        : new Date.now();
+      file.entryDate = !isEmpty(file.entryDate) ? file.entryDate : "";
       file.carrier = !isEmpty(file.carrier) ? file.carrier : "";
       file.master = !isEmpty(file.master) ? file.master : "";
       file.house = !isEmpty(file.house) ? file.house : "";
@@ -166,7 +165,8 @@ class DeliveryOrder extends Component {
           terminal: file.terminal,
           tentativelfd: file.tentativelfd,
           devan: file.devan,
-          _id: file._id
+          _id: file._id,
+          containers: file.containers
         }
       });
     }
@@ -246,108 +246,126 @@ class DeliveryOrder extends Component {
       containerInput: { ...this.state.containerInput, [name]: value }
     });
   };
+
   render() {
-    const containerInput = this.state.containerInput;
+    const { loading } = this.props.deliveryOrder;
+    const { file, containerInput } = this.state;
+    let fileContent;
+    if (file === null || loading) {
+      fileContent = <Spinner />;
+    } else {
+      fileContent = (
+        <div>
+          <div className="row bg-secondary">
+            <div className="m-2">
+              <button
+                onClick={this.toggleEdit}
+                className="btn btn-outline-dark"
+                style={{
+                  display: this.state.file._id ? "inline-block" : "none"
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                // onClick={props.setDone}
+                className="btn btn-primary ml-3"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+          <div className="row mt-4">
+            <FileInfo
+              fileNo={this.state.file.fileNo}
+              fileCode={this.state.file.fileCode}
+              status={this.state.file.status}
+              mode={this.state.file.mode}
+              customer={this.state.file.customer.name}
+              eta={this.state.file.eta}
+              entryDate={this.state.file.entryDate}
+              carrier={this.state.file.carrier}
+              master={this.state.file.master}
+              house={this.state.file.house}
+              terminal={this.state.file.terminal}
+              tentativelfd={this.state.file.tentativelfd}
+              devan={this.state.file.devan}
+              changeETA={this.handleETAChange}
+              changeData={this.handleFileChange}
+              changeSelectData={this.handleFileSelectChange}
+              changeMode={this.handleModeChange}
+              changeCustomerData={this.handleCustomerChange}
+            />
+            {/* <ContainerList
+            containerList={this.state.file.containerList}
+            containerInput={this.state.containerInput}
+            changeData={this.handleContainerChange}
+          /> */}
+          </div>
+
+          {file._id ? (
+            <ContainerDetails
+              containers={file.containers}
+              {...this.state.containerInput}
+              // number={this.state.containerInput.number}
+              // size={this.state.containerInput.size}
+              // freight={this.state.containerInput.freight}
+              // customs={this.state.containerInput.customs}
+              // pcsAmount={this.state.containerInput.pcsAmount}
+              // pcsUnit={this.state.containerInput.pcsUnit}
+              // weightAmount={this.state.containerInput.weightAmount}
+              // weightUnit={this.state.containerInput.weightUnit}
+              // dimensionAmount={this.state.containerInput.dimensionAmount}
+              // dimensionUnit={this.state.containerInput.dimensionUnit}
+              // terminal={this.state.containerInput.terminal}
+              // eta={this.state.containerInput.eta}
+              // dischargeDate={this.state.containerInput.dischargeDate}
+              // lfd={this.state.containerInput.lfd}
+              // puDate={this.state.containerInput.puDate}
+              // demurrageDays={this.state.containerInput.demurrageDays}
+              // puTime={this.state.containerInput.puTime}
+              // perDiemDate={this.state.containerInput.perDiemDate}
+              // emptyReturn={this.state.containerInput.emptyReturn}
+              // perDiemDays={this.state.containerInput.perDiemDays}
+              // chasisNo={this.state.containerInput.chasisNo}
+              // chasisPerDiemDate={this.state.containerInput.chasisPerDiemDate}
+              // chasisReturnDate={this.state.containerInput.chasisReturnDate}
+              // chasisPerDiemDays={this.state.containerInput.chasisPerDiemDays}
+              // chasisFlip={this.state.containerInput.chasisFlip}
+              // newChasisNo={this.state.containerInput.newChasisNo}
+              // nightGate={this.state.containerInput.nightGate}
+              // prePull={this.state.containerInput.prePull}
+              // yardStorage={this.state.containerInput.yardStorage}
+              // storageDays={this.state.containerInput.storageDays}
+              // TMF={this.state.containerInput.TMF}
+              // TMFFee={this.state.containerInput.TMFFee}
+              // nightGate={this.state.containerInput.nightGate}
+              // prePull={this.state.containerInput.prePull}
+              // advanceExamFee={this.state.containerInput.advanceExamFee}
+              // examFee={this.state.containerInput.examFee}
+              // advanceDemurrage={this.state.containerInput.advanceDemurrage}
+              // demurrageFee={this.state.containerInput.demurrageFee}
+              // advancePerDiem={this.state.containerInput.advancePerDiem}
+              // perDiemFee={this.state.containerInput.perDiemFee}
+              // advanceDocsFee={this.state.containerInput.advanceDocsFee}
+              // docsFee={this.state.containerInput.docsFee}
+              // remark={this.state.containerInput.remark}
+              changeData={this.handleContainerChange}
+              changeSelectData={this.handleContainerSelectChange}
+            />
+          ) : (
+            <NewContainer />
+          )}
+        </div>
+      );
+    }
+
     return (
       <div className="col-xl-12">
         <div className="row bg-warning">
           <h1 className="pl-3">File</h1>
         </div>
-        <div className="row bg-secondary">
-          <div className="m-2">
-            <button
-              onClick={this.toggleEdit}
-              className="btn btn-outline-dark"
-              style={{
-                display: this.state.file._id ? "inline-block" : "none"
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              // onClick={props.setDone}
-              className="btn btn-primary ml-3"
-            >
-              Save
-            </button>
-          </div>
-        </div>
-        <div className="row mt-4">
-          <FileInfo
-            fileNo={this.state.file.fileNo}
-            fileCode={this.state.file.fileCode}
-            status={this.state.file.status}
-            mode={this.state.file.mode}
-            customer={this.state.file.customer.name}
-            eta={this.state.file.eta}
-            entryDate={this.state.file.entryDate}
-            carrier={this.state.file.carrier}
-            master={this.state.file.master}
-            house={this.state.file.house}
-            terminal={this.state.file.terminal}
-            tentativelfd={this.state.file.tentativelfd}
-            devan={this.state.file.devan}
-            changeETA={this.handleETAChange}
-            changeData={this.handleFileChange}
-            changeSelectData={this.handleFileSelectChange}
-            changeMode={this.handleModeChange}
-            changeCustomerData={this.handleCustomerChange}
-          />
-          {/* <ContainerList
-            containerList={this.state.file.containerList}
-            containerInput={this.state.containerInput}
-            changeData={this.handleContainerChange}
-          /> */}
-        </div>
-
-        <ContainerDetails
-          number={this.state.containerInput.number}
-          size={this.state.containerInput.size}
-          freight={this.state.containerInput.freight}
-          customs={this.state.containerInput.customs}
-          pcsAmount={this.state.containerInput.pcsAmount}
-          pcsUnit={this.state.containerInput.pcsUnit}
-          weightAmount={this.state.containerInput.weightAmount}
-          weightUnit={this.state.containerInput.weightUnit}
-          dimensionAmount={this.state.containerInput.dimensionAmount}
-          dimensionUnit={this.state.containerInput.dimensionUnit}
-          terminal={this.state.containerInput.terminal}
-          eta={this.state.containerInput.eta}
-          dischargeDate={this.state.containerInput.dischargeDate}
-          lfd={this.state.containerInput.lfd}
-          puDate={this.state.containerInput.puDate}
-          demurrageDays={this.state.containerInput.demurrageDays}
-          puTime={this.state.containerInput.puTime}
-          perDiemDate={this.state.containerInput.perDiemDate}
-          emptyReturn={this.state.containerInput.emptyReturn}
-          perDiemDays={this.state.containerInput.perDiemDays}
-          chasisNo={this.state.containerInput.chasisNo}
-          chasisPerDiemDate={this.state.containerInput.chasisPerDiemDate}
-          chasisReturnDate={this.state.containerInput.chasisReturnDate}
-          chasisPerDiemDays={this.state.containerInput.chasisPerDiemDays}
-          chasisFlip={this.state.containerInput.chasisFlip}
-          newChasisNo={this.state.containerInput.newChasisNo}
-          nightGate={this.state.containerInput.nightGate}
-          prePull={this.state.containerInput.prePull}
-          yardStorage={this.state.containerInput.yardStorage}
-          storageDays={this.state.containerInput.storageDays}
-          TMF={this.state.containerInput.TMF}
-          TMFFee={this.state.containerInput.TMFFee}
-          nightGate={this.state.containerInput.nightGate}
-          prePull={this.state.containerInput.prePull}
-          advanceExamFee={this.state.containerInput.advanceExamFee}
-          examFee={this.state.containerInput.examFee}
-          advanceDemurrage={this.state.containerInput.advanceDemurrage}
-          demurrageFee={this.state.containerInput.demurrageFee}
-          advancePerDiem={this.state.containerInput.advancePerDiem}
-          perDiemFee={this.state.containerInput.perDiemFee}
-          advanceDocsFee={this.state.containerInput.advanceDocsFee}
-          docsFee={this.state.containerInput.docsFee}
-          remark={this.state.containerInput.remark}
-          changeData={this.handleContainerChange}
-          changeSelectData={this.handleContainerSelectChange}
-          containerInput={containerInput}
-        />
+        {fileContent}
       </div>
     );
   }

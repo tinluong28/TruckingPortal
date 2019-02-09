@@ -32,7 +32,7 @@ const SelectInput = props => {
       );
       selectElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label">
+          <label className="col-md-3 col-form-label text-right">
             <strong>{props.label}</strong>
           </label>
           <div className="col-md-7">{selectElement}</div>
@@ -70,7 +70,7 @@ const SelectInput = props => {
       );
       selectElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label ml-3 mr-0">
+          <label className="col-md-3 col-form-label text-right ml-3 mr-0">
             <strong>{props.label}</strong>
           </label>
           {selectElement}
@@ -120,7 +120,7 @@ const SelectInput = props => {
       );
       selectElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label">
+          <label className="col-md-3 col-form-label text-right">
             <strong>{props.label}</strong>
           </label>
           <div className="col-md-7">{selectElement}</div>

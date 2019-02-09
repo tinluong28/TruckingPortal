@@ -24,7 +24,7 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label mr-0">
+          <label className="col-md-3 col-form-label text-right mr-0">
             <strong>{props.label}</strong>
           </label>
           <div className="col-md-7">{inputElement}</div>
@@ -52,7 +52,7 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-4 col-form-label ml-3">
+          <label className="col-md-4 col-form-label text-right ml-3">
             <strong>{props.label}</strong>
           </label>
           <div className="col-md-6">{inputElement}</div>
@@ -79,7 +79,7 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-6 col-form-label">
+          <label className="col-md-6 col-form-label text-right">
             <strong>{props.label}</strong>
           </label>
           <div className="col-md-5 pl-0 pr-0">{inputElement}</div>
@@ -117,7 +117,7 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label">
+          <label className="col-md-3 col-form-label text-right">
             <strong>{props.label}</strong>
           </label>
           <div className="col-md-4">{inputElement}</div>
@@ -137,7 +137,7 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label mr-0">
+          <label className="col-md-3 col-form-label text-right mr-0">
             <strong>{props.label}</strong>
           </label>
           <div className="col-md-7">{inputElement}</div>
@@ -162,7 +162,7 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label mr-0">
+          <label className="col-md-3 col-form-label text-right mr-0">
             <strong>{props.label}</strong>
           </label>
           <div className="col-md-7">{inputElement}</div>

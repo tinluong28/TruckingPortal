@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Children } from "react";
 import PropTypes from "prop-types";
 import Tab from "./Tab";
 
@@ -11,10 +11,10 @@ class Tabs extends Component {
     super(props);
 
     this.state = {
-      activeTab:
-        this.props.children.length > 0
-          ? this.props.children[0].props.label
-          : this.props.children.props.label
+      activeTab: this.props.children[0].props.label
+      // this.props.children.length > 0
+      //   ? this.props.children[0].props.label
+      //   : this.props.children.props.label
     };
   }
 
@@ -29,30 +29,48 @@ class Tabs extends Component {
       state: { activeTab }
     } = this;
 
-    return (
-      <div className="tabs">
-        <ol className="tab-list">
-          {children.map(child => {
-            const { label } = child.props;
+    let Details;
+    if (children.length > 0) {
+      Details = (
+        <div className="tabs">
+          <ol className="tab-list">
+            {React.Children.map(children, child => {
+              const { label } = child.props;
 
-            return (
-              <Tab
-                activeTab={activeTab}
-                key={label}
-                label={label}
-                onClick={onClickTabItem}
-              />
-            );
-          })}
-        </ol>
-        <div className="tab-content">
-          {children.map(child => {
-            if (child.props.label !== activeTab) return undefined;
-            return child.props.children;
-          })}
+              return (
+                <Tab
+                  activeTab={activeTab}
+                  key={label}
+                  label={label}
+                  onClick={onClickTabItem}
+                />
+              );
+            })}
+          </ol>
+          <div className="tab-content">
+            {React.Children.map(children, child => {
+              if (child.props.label !== activeTab) return undefined;
+              return child.props.children;
+            })}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      Details = (
+        <div className="tabs">
+          <ol className="tab-list">
+            <Tab
+              activeTab={activeTab}
+              key={children.props.label}
+              label={children.props.label}
+              onClick={onClickTabItem}
+            />
+          </ol>
+          <div className="tab-content">{children.props.children}</div>
+        </div>
+      );
+    }
+    return <div>{Details}</div>;
   }
 }
 

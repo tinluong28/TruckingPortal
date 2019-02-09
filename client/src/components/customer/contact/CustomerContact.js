@@ -21,6 +21,7 @@ const customerContact = props => {
       onDelete={onDelete}
     />
   ));
+  console.log(customerContact);
   return (
     <div className="row">
       <div className="col-md-12">
