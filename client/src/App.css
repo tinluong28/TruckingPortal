@@ -2,11 +2,15 @@ img {
   width: 100%;
 }
 
+html {
+}
+
 .landing {
-  position: relative;
-  /* background: url("./img/outer-space.jpg") no-repeat; */
+  background: url("./img/outer-space.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-position: center;
   height: 100vh;
   margin-top: -60px;
   margin-bottom: -50px;
