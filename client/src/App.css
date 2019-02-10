@@ -2,9 +2,6 @@ img {
   width: 100%;
 }
 
-html {
-}
-
 .landing {
   background: url("./img/outer-space.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
