@@ -2,13 +2,12 @@ import axios from "axios";
 
 import {
   GET_FILE,
-  GET_CONTAINER,
   GET_FILES,
   FILE_LOADING,
   CLEAR_CURRENT_FILE,
   GET_ERRORS,
   CLEAR_CURRENT_FILES,
-  SET_CURRENT_FILE
+  GET_CONTAINERS
 } from "./types";
 
 //Get current profile
@@ -101,15 +100,16 @@ export const addContainer = (id, containerData) => dispatch => {
     );
 };
 
-export const getCurrentContainer = (DO, containerNumber) => dispatch => {
-  const currentContainer = DO.containers.filter(
-    container => container.number === containerNumber
-  );
-  dispatch({
-    type: GET_CONTAINER,
-    payload: currentContainer
-  });
-};
+// GET_CONTAINER is used
+// export const getCurrentContainer = (DO, containerNumber) => dispatch => {
+//   const currentContainer = DO.containers.filter(
+//     container => container.number === containerNumber
+//   );
+//   dispatch({
+//     type: GET_CONTAINER,
+//     payload: currentContainer
+//   });
+// };
 
 export const updateContainer = (
   fileID,
@@ -117,7 +117,7 @@ export const updateContainer = (
   containerData
 ) => dispatch => {
   axios
-    .put(`/api/file/update-container/${fileID}/${containerID}`)
+    .put(`/api/file/update-container/${fileID}/${containerID}`, containerData)
     .then(res =>
       dispatch({
         type: GET_FILE,

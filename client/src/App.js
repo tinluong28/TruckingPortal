@@ -27,6 +27,7 @@ import Delivery from "./container/Delivery/Delivery";
 import DeliveryList from "./components/delivery/deliveryList/DeliveryList";
 import DeliveryOrder from "./container/File/DeliveryOrder";
 import FileList from "./components/file/fileList/FileList";
+import Details from "./components/file/ContainerDetail/Details";
 import "./App.css";
 
 // Check for token
@@ -159,6 +160,9 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/file/all" component={FileList} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/file/test" component={Details} />
             </Switch>
           </div>
           <Footer />

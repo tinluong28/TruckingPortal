@@ -208,7 +208,7 @@ class Customer extends Component {
             </h1>
           </div>
 
-          <Link to="/customers/all" type="submit" className="btn btn-dark mt-4">
+          <Link to="/customers/all" className="btn btn-dark mt-4">
             Back to List
           </Link>
           {/* <button

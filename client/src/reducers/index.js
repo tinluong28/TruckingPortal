@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 import authReducer from "./authReducer";
 import errorReducer from "./errorReducer";
 import profileReducer from "./profileReducer";
@@ -12,5 +13,6 @@ export default combineReducers({
   profile: profileReducer,
   customer: customerReducer,
   delivery: deliveryReducer,
-  deliveryOrder: deliveryOrderReducer
+  deliveryOrder: deliveryOrderReducer,
+  form: formReducer
 });

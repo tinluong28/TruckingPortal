@@ -1,7 +1,7 @@
 import React from "react";
 import Tabs from "../../common/Tabs";
 
-import Details from "./Details";
+import Details from "../../../container/File/Details";
 const NewContainer = props => {
   const containerContents = (
     <Tabs>

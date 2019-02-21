@@ -35,11 +35,13 @@ class FileItem extends Component {
             </Link>
           </div>
           <div className="col-3">
-            <p>
-              {isEmpty(containers[0].number) ? null : (
-                <span>{containers[0].number}</span>
-              )}
-            </p>
+            <div>
+              {containers.length > 0
+                ? containers.map(container => (
+                    <p key={container._id}>{container.number}</p>
+                  ))
+                : null}
+            </div>
             <p>{isEmpty(file.city) ? null : <span>{file.city}</span>}</p>
             <p>
               {isEmpty(file.businesstype) ? null : (

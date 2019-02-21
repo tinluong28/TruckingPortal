@@ -230,9 +230,16 @@ img {
 
 .tab-list-item {
   display: inline-block;
+  border: solid rgb(243, 155, 55);
+  border-width: 1px 1px 0 1px;
+  border-top-right-radius: 0.4em;
   list-style: none;
   margin-bottom: -2px;
   padding: 0.5rem 0.75rem;
+}
+.tab-list-item:hover {
+  cursor: pointer;
+  color: blue;
 }
 
 .tab-list-active {
@@ -241,4 +248,5 @@ img {
   border: solid rgb(243, 155, 55);
   border-width: 2px 2px 0 2px;
   border-top-right-radius: 0.4em;
+  color: blue;
 }

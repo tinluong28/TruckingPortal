@@ -105,13 +105,13 @@ const SelectInput = props => {
       break;
     default:
       selectElement = (
-        <div>
+        <div className="col-md-7 ml-0">
           <Select
             {...props}
+            value={props.options.filter(({ value }) => value === props.value)}
+            getOptionLabel={({ label }) => label}
+            getOptionValue={({ value }) => value}
             onChange={props.onChange}
-            className={classnames("custom-select w-75", {
-              "is-invalid": props.error
-            })}
             options={props.options}
           />
 
@@ -120,10 +120,10 @@ const SelectInput = props => {
       );
       selectElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label text-right">
+          <label className="col-md-3 col-form-label text-right ml-3 mr-0">
             <strong>{props.label}</strong>
           </label>
-          <div className="col-md-7">{selectElement}</div>
+          {selectElement}
         </div>
       );
       break;

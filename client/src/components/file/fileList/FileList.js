@@ -61,7 +61,7 @@ class FileList extends Component {
 
 FileList.propTypes = {
   getFiles: PropTypes.func.isRequired,
-  file: PropTypes.object.isRequired
+  deliveryOrder: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

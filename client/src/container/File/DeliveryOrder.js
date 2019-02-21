@@ -12,11 +12,10 @@ import {
   updateCurrentFile,
   deleteFile,
   addContainer,
-  updateContainer,
-  getCurrentContainer,
   deleteContainer,
   clearCurrentFile
 } from "../../actions/deliveryOrderActions";
+import { getContainers, updateContainer } from "../../actions/containerAction";
 import Spinner from "../../components/common/Spinner/Spinner";
 import isEmpty from "../../validation/is-empty";
 import Moment from "react-moment";
@@ -104,6 +103,7 @@ class DeliveryOrder extends Component {
           phone: "",
           email: ""
         },
+        newContainer: "",
         delivered: false,
         deliveryDate: "",
         deliveryTime: "",
@@ -114,6 +114,7 @@ class DeliveryOrder extends Component {
         deliverDimensionAmount: "",
         deliverDimensionUnit: "CBM"
       },
+      addContainerNumber: "",
       edit: false,
       errors: {}
     };
@@ -174,27 +175,34 @@ class DeliveryOrder extends Component {
 
   addContainer = e => {
     e.preventDefault();
-    const { deliveryOrder } = this.state;
-    const { containerInput } = this.state;
-    this.props.addContainer(deliveryOrder._id, containerInput);
+    const { file } = this.state;
+    const { addContainerNumber } = this.state;
+    const newContainer = { number: addContainerNumber };
+    this.props.addContainer(file._id, newContainer);
+
     this.setState({
-      containerInput: {
-        number: ""
-      }
+      addContainerNumber: ""
     });
   };
 
-  updateContainer = e => {
-    e.preventDefault();
-    const { deliveryOrder } = this.state;
-    const { _id, ...containerInput } = this.state.containerInput;
-    this.props.updateContainer(deliveryOrder._id, _id, containerInput);
+  containerInputHandler = value => {
+    this.setState({
+      addContainerNumber: value
+    });
   };
 
-  onViewContainer = containerNumber => {
-    this.props.getCurrentContainer(containerNumber);
-    this.setState({ containerInput: this.props.deliveryOrder.container });
+  updateContainer = (containerID, updatedContainers) => {
+    const {
+      file: { containers }
+    } = this.state;
+    this.props.updateContainer(containers, containerID, updatedContainers);
   };
+
+  // GET_CONTAINER is used
+  // onViewContainer = containerNumber => {
+  //   this.props.getCurrentContainer(containerNumber);
+  //   this.setState({ containerInput: this.props.deliveryOrder.container });
+  // };
 
   handleFileChange = (name, value) => {
     this.setState({
@@ -297,16 +305,17 @@ class DeliveryOrder extends Component {
               changeCustomerData={this.handleCustomerChange}
             />
             {/* <ContainerList
-            containerList={this.state.file.containerList}
-            containerInput={this.state.containerInput}
-            changeData={this.handleContainerChange}
-          /> */}
+              containerList={this.state.file.containerList}
+              containerInput={this.state.containerInput}
+              changeData={this.handleContainerChange}
+            /> */}
           </div>
 
           {file._id ? (
             <ContainerDetails
               containers={file.containers}
-              {...this.state.containerInput}
+              newContainer={this.state.newContainer}
+              fileID={file._id}
               // number={this.state.containerInput.number}
               // size={this.state.containerInput.size}
               // freight={this.state.containerInput.freight}
@@ -350,12 +359,13 @@ class DeliveryOrder extends Component {
               // advanceDocsFee={this.state.containerInput.advanceDocsFee}
               // docsFee={this.state.containerInput.docsFee}
               // remark={this.state.containerInput.remark}
+              addContainerNumber={this.state.addContainerNumber}
+              addContainer={this.addContainer}
+              containerInputHandler={this.containerInputHandler}
               changeData={this.handleContainerChange}
               changeSelectData={this.handleContainerSelectChange}
             />
-          ) : (
-            <NewContainer />
-          )}
+          ) : null}
         </div>
       );
     }
@@ -378,7 +388,6 @@ DeliveryOrder.propTypes = {
   deleteFile: PropTypes.func.isRequired,
   addContainer: PropTypes.func.isRequired,
   updateContainer: PropTypes.func.isRequired,
-  getCurrentContainer: PropTypes.func.isRequired,
   deleteContainer: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   deliveryOrder: PropTypes.object.isRequired
@@ -399,7 +408,6 @@ export default connect(
     deleteFile,
     addContainer,
     updateContainer,
-    getCurrentContainer,
     deleteContainer,
     clearCurrentFile
   }

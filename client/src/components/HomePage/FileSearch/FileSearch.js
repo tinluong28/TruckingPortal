@@ -33,7 +33,7 @@ class FileSearch extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h5 className="mt-5">Let's keep the world moving...</h5>
 
         <div className="Main">

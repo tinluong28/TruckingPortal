@@ -1,16 +1,16 @@
 import {
   GET_FILE,
   GET_FILES,
-  GET_CONTAINER,
   FILE_LOADING,
   CLEAR_CURRENT_FILE,
-  CLEAR_CURRENT_FILES
+  CLEAR_CURRENT_FILES,
+  GET_CONTAINERS
 } from "../actions/types";
 
 const initialState = {
-  file: {},
   files: [],
-  container: {},
+  file: {},
+  containers: [],
   loading: false
 };
 
@@ -25,6 +25,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         file: action.payload,
+        containers: action.payload.containers,
         loading: false
       };
     case GET_FILES:
@@ -33,16 +34,17 @@ export default function(state = initialState, action) {
         files: action.payload,
         loading: false
       };
-    case GET_CONTAINER:
+    case GET_CONTAINERS:
       return {
         ...state,
-        container: action.payload,
+        containers: action.payload,
         loading: false
       };
     case CLEAR_CURRENT_FILE:
       return {
         ...state,
-        file: {}
+        file: {},
+        containers: []
       };
     case CLEAR_CURRENT_FILES:
       return {

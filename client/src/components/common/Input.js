@@ -148,7 +148,9 @@ const input = props => {
       inputElement = (
         <div>
           <input
-            {...props}
+            type={props.type}
+            value={props.value}
+            name={props.name}
             onChange={props.onChange}
             className={classnames("form-control", {
               "is-invalid": props.error
@@ -162,10 +164,10 @@ const input = props => {
       );
       inputElementWithLabel = (
         <div className="form-group row">
-          <label className="col-md-3 col-form-label text-right mr-0">
+          <label className="col-md-4 col-form-label text-right ml-3">
             <strong>{props.label}</strong>
           </label>
-          <div className="col-md-7">{inputElement}</div>
+          <div className="col-md-6">{inputElement}</div>
         </div>
       );
       break;
