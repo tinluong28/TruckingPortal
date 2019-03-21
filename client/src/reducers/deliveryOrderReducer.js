@@ -4,17 +4,22 @@ import {
   FILE_LOADING,
   CLEAR_CURRENT_FILE,
   CLEAR_CURRENT_FILES,
-  GET_CONTAINERS
+  GET_CONTAINERS,
+  GET_CURRENT_VIEW_CONTAINER
 } from "../actions/types";
 
 const initialState = {
   files: [],
   file: {},
   containers: [],
+  currentViewContainer: {},
   loading: false
 };
 
 export default function(state = initialState, action) {
+  const getCurrentContainer = number => {
+    let currentContainer = state.containers.find(con => con.number === number);
+  };
   switch (action.type) {
     case FILE_LOADING:
       return {
@@ -38,6 +43,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         containers: action.payload,
+        loading: false
+      };
+    case GET_CURRENT_VIEW_CONTAINER:
+      return {
+        ...state,
+        currentViewContainer: action.payload,
         loading: false
       };
     case CLEAR_CURRENT_FILE:

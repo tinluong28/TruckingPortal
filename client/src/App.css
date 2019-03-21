@@ -236,17 +236,20 @@ img {
   list-style: none;
   margin-bottom: -2px;
   padding: 0.5rem 0.75rem;
+  background-color: rgb(86, 139, 253);
+  font-weight: bold;
+  color: white;
 }
 .tab-list-item:hover {
   cursor: pointer;
-  color: blue;
+  opacity: 0.8;
 }
 
 .tab-list-active {
-  background-color: white;
+  background-color: rgb(26, 60, 250);
   font-weight: bold;
   border: solid rgb(243, 155, 55);
   border-width: 2px 2px 0 2px;
   border-top-right-radius: 0.4em;
-  color: blue;
+  color: white;
 }

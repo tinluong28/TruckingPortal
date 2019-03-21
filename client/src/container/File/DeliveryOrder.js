@@ -13,6 +13,7 @@ import {
   deleteFile,
   addContainer,
   deleteContainer,
+  getCurrentViewContainer,
   clearCurrentFile
 } from "../../actions/deliveryOrderActions";
 import { getContainers, updateContainer } from "../../actions/containerAction";
@@ -255,6 +256,9 @@ class DeliveryOrder extends Component {
     });
   };
 
+  handleGetCurrentViewContainer = id => {
+    this.props.getCurrentViewContainer(id);
+  };
   render() {
     const { loading } = this.props.deliveryOrder;
     const { file, containerInput } = this.state;
@@ -313,9 +317,10 @@ class DeliveryOrder extends Component {
 
           {file._id ? (
             <ContainerDetails
-              containers={file.containers}
+              containers={this.state.file.containers}
               newContainer={this.state.newContainer}
               fileID={file._id}
+              getCurrentViewContainer={this.handleGetCurrentViewContainer}
               // number={this.state.containerInput.number}
               // size={this.state.containerInput.size}
               // freight={this.state.containerInput.freight}
@@ -387,6 +392,7 @@ DeliveryOrder.propTypes = {
   updateCurrentFile: PropTypes.func.isRequired,
   deleteFile: PropTypes.func.isRequired,
   addContainer: PropTypes.func.isRequired,
+  getCurrentViewContainer: PropTypes.func.isRequired,
   updateContainer: PropTypes.func.isRequired,
   deleteContainer: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -409,6 +415,7 @@ export default connect(
     addContainer,
     updateContainer,
     deleteContainer,
+    getCurrentViewContainer,
     clearCurrentFile
   }
 )(DeliveryOrder);

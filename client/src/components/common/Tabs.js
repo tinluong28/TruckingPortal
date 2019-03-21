@@ -22,9 +22,14 @@ class Tabs extends Component {
     this.setState({ activeTab: tab });
   };
 
+  onClickItem = number => {
+    this.props.children.props.setID(number);
+  };
+
   render() {
     const {
       onClickTabItem,
+      onClickItem,
       props: { children },
       state: { activeTab }
     } = this;
@@ -36,12 +41,14 @@ class Tabs extends Component {
           <ol className="tab-list">
             {React.Children.map(children, child => {
               const { label } = child.props;
+              const { setID } = child.props;
 
               return (
                 <Tab
                   activeTab={activeTab}
                   key={label}
                   label={label}
+                  setID={onClickItem}
                   onClick={onClickTabItem}
                 />
               );

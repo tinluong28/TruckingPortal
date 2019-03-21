@@ -9,8 +9,9 @@ class Tab extends Component {
   };
 
   onClick = () => {
-    const { label, onClick } = this.props;
+    const { label, onClick, setID } = this.props;
     onClick(label);
+    setID(label);
   };
 
   render() {

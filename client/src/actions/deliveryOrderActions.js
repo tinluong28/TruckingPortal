@@ -7,7 +7,8 @@ import {
   CLEAR_CURRENT_FILE,
   GET_ERRORS,
   CLEAR_CURRENT_FILES,
-  GET_CONTAINERS
+  GET_CONTAINERS,
+  GET_CURRENT_VIEW_CONTAINER
 } from "./types";
 
 //Get current profile
@@ -132,6 +133,13 @@ export const updateContainer = (
     );
 };
 
+// Get current viewed container
+export const getCurrentViewContainer = container => {
+  return {
+    type: GET_CURRENT_VIEW_CONTAINER,
+    payload: container
+  };
+};
 // Delete Contact
 export const deleteContainer = (fileID, containerID) => dispatch => {
   if (window.confirm("Delete Container?")) {

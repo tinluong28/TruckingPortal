@@ -1,5 +1,5 @@
 import React from "react";
-import Tabs from "../../common/Tabs";
+import ContainerTabs from "../../common/containerTabs";
 import SingleTab from "../../common/SingleTab";
 import Input from "../../common/Input";
 import Details from "../../../container/File/Details";
@@ -11,23 +11,31 @@ const ContainerDetails = props => {
   const newContainerInput = e => {
     props.containerInputHandler(e.target.value);
   };
+  const getCurrentViewContainer = number => {
+    props.getCurrentViewContainer(number);
+  };
   const containers = props.containers;
   console.log(props.containers);
   let containerContents;
   if (props.containers.length > 0) {
     containerContents = (
-      <Tabs>
-        {props.containers.map(container => (
-          <div key={container._id} label={container.number}>
-            {/* <Details
-              {...container}
-              containerID={container._id}
-              fileID={props.fileID}
-              // containerInput={props.containerInput}
-            /> */}
-          </div>
-        ))}
-      </Tabs>
+      <ContainerTabs containers={containers} />
+      // <Tabs>
+      //   {props.containers.map(container => (
+      //     <div
+      //       key={container._id}
+      //       label={container.number}
+      //       setID={getCurrentViewContainer}
+      //     >
+      //       {/* <Details
+      //         {...container}
+      //         containerID={container._id}
+      //         fileID={props.fileID}
+      //         // containerInput={props.containerInput}
+      //       /> */}
+      //     </div>
+      //   ))}
+      // </Tabs>
     );
   } else {
     containerContents = (
