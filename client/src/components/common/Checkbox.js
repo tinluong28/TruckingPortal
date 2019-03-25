@@ -9,7 +9,7 @@ const Checkbox = props => {
         <div className="form-group">
           <label className="CheckboxContainer">
             {props.label}
-            <input type="checkbox" {...props} onChange={props.onChange} />
+            <input type="checkbox" {...props} />
             <span className="Checkmark" />
           </label>
         </div>

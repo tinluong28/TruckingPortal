@@ -111,7 +111,20 @@ export const addContainer = (id, containerData) => dispatch => {
 //     payload: currentContainer
 //   });
 // };
-
+export const saveContainerToState = (containerList, updatedContainer) => {
+  //Loop through the container list and replace the current container with updated container
+  const updatedContainerList = containerList.map(container => {
+    if (container._id === updatedContainer._id) {
+      return updatedContainer;
+    } else {
+      return container;
+    }
+  });
+  return {
+    type: GET_CONTAINERS,
+    payload: updatedContainerList
+  };
+};
 export const updateContainer = (
   fileID,
   containerID,

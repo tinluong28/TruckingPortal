@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import FileInfo from "../../components/file/FileInfo";
+import Details from "./Details";
 import ContainerList from "../../components/file/ContainerList";
 import ContainerDetails from "../../components/file/ContainerDetail/ContainerDetails";
 import NewContainer from "../../components/file/ContainerDetail/NewContainer";
@@ -315,62 +316,60 @@ class DeliveryOrder extends Component {
             /> */}
           </div>
 
-          {file._id ? (
-            <ContainerDetails
-              containers={this.state.file.containers}
-              newContainer={this.state.newContainer}
-              fileID={file._id}
-              getCurrentViewContainer={this.handleGetCurrentViewContainer}
-              // number={this.state.containerInput.number}
-              // size={this.state.containerInput.size}
-              // freight={this.state.containerInput.freight}
-              // customs={this.state.containerInput.customs}
-              // pcsAmount={this.state.containerInput.pcsAmount}
-              // pcsUnit={this.state.containerInput.pcsUnit}
-              // weightAmount={this.state.containerInput.weightAmount}
-              // weightUnit={this.state.containerInput.weightUnit}
-              // dimensionAmount={this.state.containerInput.dimensionAmount}
-              // dimensionUnit={this.state.containerInput.dimensionUnit}
-              // terminal={this.state.containerInput.terminal}
-              // eta={this.state.containerInput.eta}
-              // dischargeDate={this.state.containerInput.dischargeDate}
-              // lfd={this.state.containerInput.lfd}
-              // puDate={this.state.containerInput.puDate}
-              // demurrageDays={this.state.containerInput.demurrageDays}
-              // puTime={this.state.containerInput.puTime}
-              // perDiemDate={this.state.containerInput.perDiemDate}
-              // emptyReturn={this.state.containerInput.emptyReturn}
-              // perDiemDays={this.state.containerInput.perDiemDays}
-              // chasisNo={this.state.containerInput.chasisNo}
-              // chasisPerDiemDate={this.state.containerInput.chasisPerDiemDate}
-              // chasisReturnDate={this.state.containerInput.chasisReturnDate}
-              // chasisPerDiemDays={this.state.containerInput.chasisPerDiemDays}
-              // chasisFlip={this.state.containerInput.chasisFlip}
-              // newChasisNo={this.state.containerInput.newChasisNo}
-              // nightGate={this.state.containerInput.nightGate}
-              // prePull={this.state.containerInput.prePull}
-              // yardStorage={this.state.containerInput.yardStorage}
-              // storageDays={this.state.containerInput.storageDays}
-              // TMF={this.state.containerInput.TMF}
-              // TMFFee={this.state.containerInput.TMFFee}
-              // nightGate={this.state.containerInput.nightGate}
-              // prePull={this.state.containerInput.prePull}
-              // advanceExamFee={this.state.containerInput.advanceExamFee}
-              // examFee={this.state.containerInput.examFee}
-              // advanceDemurrage={this.state.containerInput.advanceDemurrage}
-              // demurrageFee={this.state.containerInput.demurrageFee}
-              // advancePerDiem={this.state.containerInput.advancePerDiem}
-              // perDiemFee={this.state.containerInput.perDiemFee}
-              // advanceDocsFee={this.state.containerInput.advanceDocsFee}
-              // docsFee={this.state.containerInput.docsFee}
-              // remark={this.state.containerInput.remark}
-              addContainerNumber={this.state.addContainerNumber}
-              addContainer={this.addContainer}
-              containerInputHandler={this.containerInputHandler}
-              changeData={this.handleContainerChange}
-              changeSelectData={this.handleContainerSelectChange}
-            />
-          ) : null}
+          <Details
+          // containers={this.state.file.containers}
+          // newContainer={this.state.newContainer}
+          // fileID={file._id}
+          // getCurrentViewContainer={this.handleGetCurrentViewContainer}
+          // number={this.state.containerInput.number}
+          // size={this.state.containerInput.size}
+          // freight={this.state.containerInput.freight}
+          // customs={this.state.containerInput.customs}
+          // pcsAmount={this.state.containerInput.pcsAmount}
+          // pcsUnit={this.state.containerInput.pcsUnit}
+          // weightAmount={this.state.containerInput.weightAmount}
+          // weightUnit={this.state.containerInput.weightUnit}
+          // dimensionAmount={this.state.containerInput.dimensionAmount}
+          // dimensionUnit={this.state.containerInput.dimensionUnit}
+          // terminal={this.state.containerInput.terminal}
+          // eta={this.state.containerInput.eta}
+          // dischargeDate={this.state.containerInput.dischargeDate}
+          // lfd={this.state.containerInput.lfd}
+          // puDate={this.state.containerInput.puDate}
+          // demurrageDays={this.state.containerInput.demurrageDays}
+          // puTime={this.state.containerInput.puTime}
+          // perDiemDate={this.state.containerInput.perDiemDate}
+          // emptyReturn={this.state.containerInput.emptyReturn}
+          // perDiemDays={this.state.containerInput.perDiemDays}
+          // chasisNo={this.state.containerInput.chasisNo}
+          // chasisPerDiemDate={this.state.containerInput.chasisPerDiemDate}
+          // chasisReturnDate={this.state.containerInput.chasisReturnDate}
+          // chasisPerDiemDays={this.state.containerInput.chasisPerDiemDays}
+          // chasisFlip={this.state.containerInput.chasisFlip}
+          // newChasisNo={this.state.containerInput.newChasisNo}
+          // nightGate={this.state.containerInput.nightGate}
+          // prePull={this.state.containerInput.prePull}
+          // yardStorage={this.state.containerInput.yardStorage}
+          // storageDays={this.state.containerInput.storageDays}
+          // TMF={this.state.containerInput.TMF}
+          // TMFFee={this.state.containerInput.TMFFee}
+          // nightGate={this.state.containerInput.nightGate}
+          // prePull={this.state.containerInput.prePull}
+          // advanceExamFee={this.state.containerInput.advanceExamFee}
+          // examFee={this.state.containerInput.examFee}
+          // advanceDemurrage={this.state.containerInput.advanceDemurrage}
+          // demurrageFee={this.state.containerInput.demurrageFee}
+          // advancePerDiem={this.state.containerInput.advancePerDiem}
+          // perDiemFee={this.state.containerInput.perDiemFee}
+          // advanceDocsFee={this.state.containerInput.advanceDocsFee}
+          // docsFee={this.state.containerInput.docsFee}
+          // remark={this.state.containerInput.remark}
+          // addContainerNumber={this.state.addContainerNumber}
+          // addContainer={this.addContainer}
+          // containerInputHandler={this.containerInputHandler}
+          // changeData={this.handleContainerChange}
+          // changeSelectData={this.handleContainerSelectChange}
+          />
         </div>
       );
     }

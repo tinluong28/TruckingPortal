@@ -4,12 +4,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   updateContainer,
-  deleteContainer
+  deleteContainer,
+  saveContainerToState
 } from "../../actions/deliveryOrderActions";
 import Input from "../../components/common/Input";
 import SelectInput from "../../components/common/Select";
 import SelectOptions from "../../components/common/SelectOptions";
-
+import ContainerTabs from "../../components/file/ContainerDetail/ContainerTabs";
+import ContainerDetails from "../../components/file/ContainerDetail/ContainerDetails";
 import Checkbox from "../../components/common/Checkbox";
 import isEmpty from "../../validation/is-empty";
 
@@ -17,219 +19,258 @@ class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedContainer:
+        this.props.containers.length > 0 &&
+        !isEmpty(this.props.containers[0].number)
+          ? this.props.containers[0].number
+          : "",
       container: {
-        number: props.number,
-        size: props.size,
-        freight: props.freight,
-        customs: props.customs,
-        pcsAmount: props.pcsAmount,
-        pcsUnit: props.pcsUnit,
-        weightAmount: props.weightAmount,
-        weightUnit: props.weightUnit,
-        dimensionAmount: props.dimensionAmount,
-        dimensionUnit: props.dimensionUnit,
-        terminal: props.terminal,
-        eta: props.eta,
-        dischargeDate: props.dischargeDate,
-        lfd: props.lfd,
-        puDate: props.puDate,
-        demurrageDays: props.demurrageDays,
-        puTime: props.puTime,
-        perDiemDate: props.perDiemDate,
-        emptyReturn: props.emptyReturn,
-        perDiemDays: props.perDiemDays,
-        chasisNo: props.chasisNo,
-        chasisPerDiemDate: props.chasisPerDiemDate,
-        chasisReturnDate: props.chasisReturnDate,
-        chasisPerDiemDays: props.chasisPerDiemDays,
-        chasisFlip: props.chasisFlip,
-        newChasisNo: props.newChasisNo,
-        yardStorage: props.yardStorage,
-        storageDays: props.storageDays,
-        TMF: props.TMF,
-        TMFFee: props.TMFFee,
-        nightGate: props.nightGate,
-        prePull: props.prePull,
-        advanceExamFee: props.advanceExamFee,
-        examFee: props.examFee,
-        advanceDemurrage: props.advanceDemurrage,
-        demurrageFee: props.demurrageFee,
-        advancePerDiem: props.advancePerDiem,
-        perDiemFee: props.perDiemFee,
-        advanceDocsFee: props.advanceDocsFee,
-        docsFee: props.docsFee,
-        timeIn: props.timeIn,
-        timeOut: props.timeOut,
-        waitTime: props.waitTime,
-        dryRun: props.dryRun,
-        remark: props.remark,
+        number:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].number)
+            ? this.props.containers[0].number
+            : "",
+        size:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].size)
+            ? this.props.containers[0].size
+            : "",
+        freight:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].freight)
+            ? this.props.containers[0].freight
+            : "",
+        customs:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].customs)
+            ? this.props.containers[0].customs
+            : "",
+        pcsAmount:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].pcsAmount)
+            ? this.props.containers[0].pcsAmount
+            : "",
+        pcsUnit:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].pcsUnit)
+            ? this.props.containers[0].pcsUnit
+            : "",
+        weightAmount:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].weightAmount)
+            ? this.props.containers[0].weightAmount
+            : "",
+        weightUnit:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].weightUnit)
+            ? this.props.containers[0].weightUnit
+            : "",
+        dimensionAmount:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].dimensionAmount)
+            ? this.props.containers[0].dimensionAmount
+            : "",
+        dimensionUnit:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].dimensionUnit)
+            ? this.props.containers[0].dimensionUnit
+            : "",
+        terminal:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].terminal)
+            ? this.props.containers[0].terminal
+            : "",
+        eta:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].eta)
+            ? this.props.containers[0].eta
+            : "",
+        dischargeDate:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].dischargeDate)
+            ? this.props.containers[0].dischargeDate
+            : "",
+        lfd:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].lfd)
+            ? this.props.containers[0].lfd
+            : "",
+        puDate:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].puDate)
+            ? this.props.containers[0].puDate
+            : "",
+        demurrageDays:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].demurrageDays)
+            ? this.props.containers[0].demurrageDays
+            : "",
+        puTime:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].puTime)
+            ? this.props.containers[0].puTime
+            : "",
+        perDiemDate:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].perDiemDate)
+            ? this.props.containers[0].perDiemDate
+            : "",
+        emptyReturn:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].emptyReturn)
+            ? this.props.containers[0].emptyReturn
+            : "",
+        perDiemDays:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].perDiemDays)
+            ? this.props.containers[0].perDiemDays
+            : "",
+        chasisNo:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].chasisNo)
+            ? this.props.containers[0].chasisNo
+            : "",
+        chasisPerDiemDate:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].chasisPerDiemDate)
+            ? this.props.containers[0].chasisPerDiemDate
+            : "",
+        chasisReturnDate:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].chasisReturnDate)
+            ? this.props.containers[0].chasisReturnDate
+            : "",
+        chasisPerDiemDays:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].chasisPerDiemDays)
+            ? this.props.containers[0].chasisPerDiemDays
+            : "",
+        chasisFlip:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].chasisFlip)
+            ? this.props.containers[0].chasisFlip
+            : "",
+        newChasisNo:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].newChasisNo)
+            ? this.props.containers[0].newChasisNo
+            : "",
+        yardStorage:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].yardStorage)
+            ? this.props.containers[0].yardStorage
+            : false,
+        storageDays:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].storageDays)
+            ? this.props.containers[0].storageDays
+            : "",
+        TMF:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].TMF)
+            ? this.props.containers[0].TMF
+            : false,
+        TMFFee:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].TMFFee)
+            ? this.props.containers[0].TMFFee
+            : "",
+        nightGate:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].nightGate)
+            ? this.props.containers[0].nightGate
+            : false,
+        prePull:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].prePull)
+            ? this.props.containers[0].prePull
+            : false,
+        advanceExamFee:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].advanceExamFee)
+            ? this.props.containers[0].advanceExamFee
+            : false,
+        examFee:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].examFee)
+            ? this.props.containers[0].examFee
+            : "",
+        advanceDemurrage:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].advanceDemurrage)
+            ? this.props.containers[0].advanceDemurrage
+            : false,
+        demurrageFee:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].demurrageFee)
+            ? this.props.containers[0].demurrageFee
+            : "",
+        advancePerDiem:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].advancePerDiem)
+            ? this.props.containers[0].advancePerDiem
+            : false,
+        perDiemFee:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].perDiemFee)
+            ? this.props.containers[0].perDiemFee
+            : "",
+        advanceDocsFee:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].advanceDocsFee)
+            ? this.props.containers[0].advanceDocsFee
+            : false,
+        docsFee:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].docsFee)
+            ? this.props.containers[0].docsFee
+            : "",
+        timeIn:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].timeIn)
+            ? this.props.containers[0].timeIn
+            : "",
+        timeOut:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].timeOut)
+            ? this.props.containers[0].timeOut
+            : "",
+        waitTime:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].waitTime)
+            ? this.props.containers[0].waitTime
+            : "",
+        dryRun:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].dryRun)
+            ? this.props.containers[0].dryRun
+            : "",
+        remark:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0].remark)
+            ? this.props.containers[0].remark
+            : "",
         delivery: [],
-        _id: ""
+        _id:
+          this.props.containers.length > 0 &&
+          !isEmpty(this.props.containers[0]._id)
+            ? this.props.containers[0]._id
+            : ""
       }
     };
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.container) {
-  //     const { container } = nextProps;
-  //     container.number = !isEmpty(container.number) ? container.number : "";
-  //     container.size = !isEmpty(container.size) ? container.size : "";
-  //     container.freight = !isEmpty(container.freight) ? container.freight : "";
-  //     container.customs = !isEmpty(container.customs) ? container.customs : "";
-  //     container.pcsAmount = !isEmpty(container.pcsAmount)
-  //       ? container.pcsAmount
-  //       : "";
-  //     container.pcsUnit = !isEmpty(container.pcsUnit) ? container.pcsUnit : "";
-  //     container.weightAmount = !isEmpty(container.weightAmount)
-  //       ? container.weightAmount
-  //       : "";
-  //     container.weightUnit = !isEmpty(container.weightUnit)
-  //       ? container.weightUnit
-  //       : "";
-  //     container.dimensionAmount = !isEmpty(container.dimensionAmount)
-  //       ? container.dimensionAmount
-  //       : "";
-  //     container.dimensionUnit = !isEmpty(container.dimensionUnit)
-  //       ? container.dimensionUnit
-  //       : "";
-  //     container.terminal = !isEmpty(container.terminal)
-  //       ? container.terminal
-  //       : "";
-  //     container.eta = !isEmpty(container.eta) ? container.eta : "";
-  //     container.dischargeDate = !isEmpty(container.dischargeDate)
-  //       ? container.dischargeDate
-  //       : "";
-  //     container.lfd = !isEmpty(container.lfd) ? container.lfd : "";
-  //     container.puDate = !isEmpty(container.puDate) ? container.puDate : "";
-  //     container.demurrageDays = !isEmpty(container.demurrageDays)
-  //       ? container.demurrageDays
-  //       : "";
-  //     container.puTime = !isEmpty(container.puTime) ? container.puTime : "";
-  //     container.perDiemDate = !isEmpty(container.perDiemDate)
-  //       ? container.perDiemDate
-  //       : "";
-  //     container.emptyReturn = !isEmpty(container.emptyReturn)
-  //       ? container.emptyReturn
-  //       : "";
-  //     container.perDiemDays = !isEmpty(container.perDiemDays)
-  //       ? container.perDiemDays
-  //       : "";
-  //     container.chasisNo = !isEmpty(container.chasisNo)
-  //       ? container.chasisNo
-  //       : "";
-  //     container.chasisPerDiemDate = !isEmpty(container.chasisPerDiemDate)
-  //       ? container.chasisPerDiemDate
-  //       : "";
-  //     container.chasisReturnDate = !isEmpty(container.chasisReturnDate)
-  //       ? container.chasisReturnDate
-  //       : "";
-  //     container.chasisPerDiemDays = !isEmpty(container.chasisPerDiemDays)
-  //       ? container.chasisPerDiemDays
-  //       : "";
-  //     // container.chasisFlip =
-  //     //   container.chasisPerDiemDays === true
-  //     //     ? container.chasisPerDiemDays
-  //     //     : false;
-  //     container.newChasisNo = !isEmpty(container.newChasisNo)
-  //       ? container.newChasisNo
-  //       : "";
-  //     // container.yardStorage =
-  //     //   container.chasisPerDiemDays === true
-  //     //     ? container.chasisPerDiemDays
-  //     //     : false;
-  //     container.storageDays = !isEmpty(container.storageDays)
-  //       ? container.storageDays
-  //       : "";
-  //     // container.TMF =
-  //     //   container.chasisPerDiemDays === true
-  //     //     ? container.chasisPerDiemDays
-  //     //     : false;
-  //     container.TMFFee = !isEmpty(container.TMFFee) ? container.TMFFee : "";
-  //     // container.nightGate =
-  //     //   container.chasisPerDiemDays === true
-  //     //     ? container.chasisPerDiemDays
-  //     //     : false;
-  //     container.prePull = container.perPull ? container.perPull : false;
-  //     // container.advanceExamFee =
-  //     //   container.advanceExamFee === true ? container.advanceExamFee : false;
-  //     container.examFee = !isEmpty(container.examFee) ? container.examFee : "";
-  //     // container.advanceDemurrage =
-  //     //   container.advanceDemurrage === true
-  //     //     ? container.advanceDemurrage
-  //     //     : false;
-  //     container.demurrageFee = !isEmpty(container.demurrageFee)
-  //       ? container.demurrageFee
-  //       : "";
-  //     // container.advancePerDiem =
-  //     //   container.advancePerDiem === true ? container.advancePerDiem : false;
-  //     container.perDiemFee = !isEmpty(container.perDiemFee)
-  //       ? container.perDiemFee
-  //       : "";
-  //     // container.advanceDocsFee =
-  //     //   container.advanceDocsFee === true ? container.advanceDocsFee : false;
-  //     container.docsFee = !isEmpty(container.docsFee) ? container.docsFee : "";
-  //     container.timeIn = !isEmpty(container.timeIn) ? container.timeIn : "";
-  //     container.timeOut = !isEmpty(container.timeOut) ? container.timeOut : "";
-  //     container.waitTime = !isEmpty(container.waitTime)
-  //       ? container.waitTime
-  //       : "";
-  //     container.dryRun = !isEmpty(container.dryRun) ? container.dryRun : "";
-  //     container.remark = !isEmpty(container.remark) ? container.remark : "";
-  //     this.setState({
-  //       container: {
-  // number: container.number,
-  // size: container.size,
-  // freight: container.freight,
-  // customs: container.customs,
-  // pcsAmount: container.pcsAmount,
-  // pcsUnit: container.pcsUnit,
-  // weightAmount: container.weightAmount,
-  // weightUnit: container.weightUnit,
-  // dimensionAmount: container.dimensionAmount,
-  // dimensionUnit: container.dimensionUnit,
-  // terminal: container.terminal,
-  // eta: container.eta,
-  // dischargeDate: container.dischargeDate,
-  // lfd: container.lfd,
-  // puDate: container.puDate,
-  // demurrageDays: container.demurrageDays,
-  // puTime: container.puTime,
-  // perDiemDate: container.perDiemDate,
-  // emptyReturn: container.emptyReturn,
-  // perDiemDays: container.perDiemDays,
-  // chasisNo: container.chasisNo,
-  // chasisPerDiemDate: container.chasisPerDiemDate,
-  // chasisReturnDate: container.chasisReturnDate,
-  // chasisPerDiemDays: container.chasisPerDiemDays,
-  // chasisFlip: container.chasisFlip,
-  // newChasisNo: container.newChasisNo,
-  // yardStorage: container.yardStorage,
-  // storageDays: container.storageDays,
-  // TMF: container.TMF,
-  // TMFFee: container.TMFFee,
-  // nightGate: container.nightGate,
-  // prePull: container.prePull,
-  // advanceExamFee: container.advanceExamFee,
-  // examFee: container.examFee,
-  // advanceDemurrage: container.advanceDemurrage,
-  // demurrageFee: container.demurrageFee,
-  // advancePerDiem: container.advancePerDiem,
-  // perDiemFee: container.perDiemFee,
-  // advanceDocsFee: container.advanceDocsFee,
-  // docsFee: container.docsFee,
-  // timeIn: container.timeIn,
-  // timeOut: container.timeOut,
-  // waitTime: container.waitTime,
-  // dryRun: container.dryRun,
-  // remark: container.remark
-  //       }
-  //     });
-  //   }
-  // }
   onDataChange = e => {
     e.preventDefault();
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    this.setState({ container: { ...this.state.container, [name]: value } });
+  };
+  onCheckboxChange = e => {
+    e.preventDefault();
+    const target = e.target;
+    const value = target.checked;
     const name = target.name;
     this.setState({ container: { ...this.state.container, [name]: value } });
   };
@@ -247,31 +288,246 @@ class Details extends Component {
     const containerID = this.props.containerID;
     this.props.deleteContainer(fileID, containerID);
   };
+  //Switch between containers
+  switchContainer = selectedContNumber => {
+    //Save current data to Container state in Redux
+    const updatedContainer = this.state.container;
+    this.props.saveContainerToState(this.props.containers, updatedContainer);
+    //Get new container info corresponding to the selected container number
+    let selectedContainer;
+    this.props.containers.map(container => {
+      if (container.number == selectedContNumber) {
+        selectedContainer = container;
+      }
+    });
+
+    selectedContainer.number = !isEmpty(selectedContainer.number)
+      ? selectedContainer.number
+      : "";
+    selectedContainer.size = !isEmpty(selectedContainer.size)
+      ? selectedContainer.size
+      : "";
+    selectedContainer.freight = !isEmpty(selectedContainer.freight)
+      ? selectedContainer.freight
+      : "";
+    selectedContainer.customs = !isEmpty(selectedContainer.customs)
+      ? selectedContainer.customs
+      : "";
+    selectedContainer.pcsAmount = !isEmpty(selectedContainer.pcsAmount)
+      ? selectedContainer.pcsAmount
+      : "";
+    selectedContainer.pcsUnit = !isEmpty(selectedContainer.pcsUnit)
+      ? selectedContainer.pcsUnit
+      : "";
+    selectedContainer.weightAmount = !isEmpty(selectedContainer.weightAmount)
+      ? selectedContainer.weightAmount
+      : "";
+    selectedContainer.weightUnit = !isEmpty(selectedContainer.weightUnit)
+      ? selectedContainer.weightUnit
+      : "";
+    selectedContainer.dimensionAmount = !isEmpty(
+      selectedContainer.dimensionAmount
+    )
+      ? selectedContainer.dimensionAmount
+      : "";
+    selectedContainer.dimensionUnit = !isEmpty(selectedContainer.dimensionUnit)
+      ? selectedContainer.dimensionUnit
+      : "";
+    selectedContainer.terminal = !isEmpty(selectedContainer.terminal)
+      ? selectedContainer.terminal
+      : "";
+    selectedContainer.eta = !isEmpty(selectedContainer.eta)
+      ? selectedContainer.eta
+      : "";
+    selectedContainer.dischargeDate = !isEmpty(selectedContainer.dischargeDate)
+      ? selectedContainer.dischargeDate
+      : "";
+    selectedContainer.lfd = !isEmpty(selectedContainer.lfd)
+      ? selectedContainer.lfd
+      : "";
+    selectedContainer.puDate = !isEmpty(selectedContainer.puDate)
+      ? selectedContainer.puDate
+      : "";
+    selectedContainer.demurrageDays = !isEmpty(selectedContainer.demurrageDays)
+      ? selectedContainer.demurrageDays
+      : "";
+    selectedContainer.puTime = !isEmpty(selectedContainer.puTime)
+      ? selectedContainer.puTime
+      : "";
+    selectedContainer.perDiemDate = !isEmpty(selectedContainer.perDiemDate)
+      ? selectedContainer.perDiemDate
+      : "";
+    selectedContainer.emptyReturn = !isEmpty(selectedContainer.emptyReturn)
+      ? selectedContainer.emptyReturn
+      : "";
+    selectedContainer.perDiemDays = !isEmpty(selectedContainer.perDiemDays)
+      ? selectedContainer.perDiemDays
+      : "";
+    selectedContainer.chasisNo = !isEmpty(selectedContainer.chasisNo)
+      ? selectedContainer.chasisNo
+      : "";
+    selectedContainer.chasisPerDiemDate = !isEmpty(
+      selectedContainer.chasisPerDiemDate
+    )
+      ? selectedContainer.chasisPerDiemDate
+      : "";
+    selectedContainer.chasisReturnDate = !isEmpty(
+      selectedContainer.chasisReturnDate
+    )
+      ? selectedContainer.chasisReturnDate
+      : "";
+    selectedContainer.chasisPerDiemDays = !isEmpty(
+      selectedContainer.chasisPerDiemDays
+    )
+      ? selectedContainer.chasisPerDiemDays
+      : "";
+    selectedContainer.chasisFlip = !isEmpty(selectedContainer.chasisFlip)
+      ? selectedContainer.chasisFlip
+      : false;
+    selectedContainer.newChasisNo = !isEmpty(selectedContainer.newChasisNo)
+      ? selectedContainer.newChasisNo
+      : "";
+    selectedContainer.yardStorage = !isEmpty(selectedContainer.yardStorage)
+      ? selectedContainer.yardStorage
+      : false;
+    selectedContainer.storageDays = !isEmpty(selectedContainer.storageDays)
+      ? selectedContainer.storageDays
+      : "";
+    selectedContainer.TMF = !isEmpty(selectedContainer.TMF)
+      ? selectedContainer.TMF
+      : false;
+    selectedContainer.TMFFee = !isEmpty(selectedContainer.TMFFee)
+      ? selectedContainer.TMFFee
+      : "";
+    selectedContainer.nightGate = !isEmpty(selectedContainer.nightGate)
+      ? selectedContainer.nightGate
+      : false;
+    selectedContainer.prePull = !isEmpty(selectedContainer.perPull)
+      ? selectedContainer.perPull
+      : false;
+    selectedContainer.advanceExamFee = !isEmpty(
+      selectedContainer.advanceExamFee
+    )
+      ? selectedContainer.advanceExamFee
+      : false;
+    selectedContainer.examFee = !isEmpty(selectedContainer.examFee)
+      ? selectedContainer.examFee
+      : "";
+    selectedContainer.advanceDemurrage = !isEmpty(
+      selectedContainer.advanceDemurrage
+    )
+      ? selectedContainer.advanceDemurrage
+      : false;
+    selectedContainer.demurrageFee = !isEmpty(selectedContainer.demurrageFee)
+      ? selectedContainer.demurrageFee
+      : "";
+    selectedContainer.advancePerDiem = !isEmpty(
+      selectedContainer.advancePerDiem
+    )
+      ? selectedContainer.advancePerDiem
+      : false;
+    selectedContainer.perDiemFee = !isEmpty(selectedContainer.perDiemFee)
+      ? selectedContainer.perDiemFee
+      : "";
+    selectedContainer.advanceDocsFee = !isEmpty(
+      selectedContainer.advanceDocsFee
+    )
+      ? selectedContainer.advanceDocsFee
+      : false;
+    selectedContainer.docsFee = !isEmpty(selectedContainer.docsFee)
+      ? selectedContainer.docsFee
+      : "";
+    selectedContainer.timeIn = !isEmpty(selectedContainer.timeIn)
+      ? selectedContainer.timeIn
+      : "";
+    selectedContainer.timeOut = !isEmpty(selectedContainer.timeOut)
+      ? selectedContainer.timeOut
+      : "";
+    selectedContainer.waitTime = !isEmpty(selectedContainer.waitTime)
+      ? selectedContainer.waitTime
+      : "";
+    selectedContainer.dryRun = !isEmpty(selectedContainer.dryRun)
+      ? selectedContainer.dryRun
+      : "";
+    selectedContainer.remark = !isEmpty(selectedContainer.remark)
+      ? selectedContainer.remark
+      : "";
+
+    //Set the new container info to local state
+    this.setState({
+      container: {
+        number: selectedContainer.number,
+        size: selectedContainer.size,
+        freight: selectedContainer.freight,
+        customs: selectedContainer.customs,
+        pcsAmount: selectedContainer.pcsAmount,
+        pcsUnit: selectedContainer.pcsUnit,
+        weightAmount: selectedContainer.weightAmount,
+        weightUnit: selectedContainer.weightUnit,
+        dimensionAmount: selectedContainer.dimensionAmount,
+        dimensionUnit: selectedContainer.dimensionUnit,
+        terminal: selectedContainer.terminal,
+        eta: selectedContainer.eta,
+        dischargeDate: selectedContainer.dischargeDate,
+        lfd: selectedContainer.lfd,
+        puDate: selectedContainer.puDate,
+        demurrageDays: selectedContainer.demurrageDays,
+        puTime: selectedContainer.puTime,
+        perDiemDate: selectedContainer.perDiemDate,
+        emptyReturn: selectedContainer.emptyReturn,
+        perDiemDays: selectedContainer.perDiemDays,
+        chasisNo: selectedContainer.chasisNo,
+        chasisPerDiemDate: selectedContainer.chasisPerDiemDate,
+        chasisReturnDate: selectedContainer.chasisReturnDate,
+        chasisPerDiemDays: selectedContainer.chasisPerDiemDays,
+        chasisFlip: selectedContainer.chasisFlip,
+        newChasisNo: selectedContainer.newChasisNo,
+        yardStorage: selectedContainer.yardStorage,
+        storageDays: selectedContainer.storageDays,
+        TMF: selectedContainer.TMF,
+        TMFFee: selectedContainer.TMFFee,
+        nightGate: selectedContainer.nightGate,
+        prePull: selectedContainer.prePull,
+        advanceExamFee: selectedContainer.advanceExamFee,
+        examFee: selectedContainer.examFee,
+        advanceDemurrage: selectedContainer.advanceDemurrage,
+        demurrageFee: selectedContainer.demurrageFee,
+        advancePerDiem: selectedContainer.advancePerDiem,
+        perDiemFee: selectedContainer.perDiemFee,
+        advanceDocsFee: selectedContainer.advanceDocsFee,
+        docsFee: selectedContainer.docsFee,
+        timeIn: selectedContainer.timeIn,
+        timeOut: selectedContainer.timeOut,
+        waitTime: selectedContainer.waitTime,
+        dryRun: selectedContainer.dryRun,
+        remark: selectedContainer.remark,
+        _id: selectedContainer._id
+      }
+    });
+  };
   render() {
     const containerSize = SelectOptions.containerSize;
     const PCSUnit = SelectOptions.PCSUnit;
     const weightUnitOptions = SelectOptions.weightUnit;
     const dimensionUnitOptions = SelectOptions.dimensionUnit;
     const releaseStatus = SelectOptions.releaseStatus;
-    const { container } = this.state;
-
+    let { container } = this.state;
+    const containerNumbers = this.props.containers.map(
+      container => container.number
+    );
+    console.log(containerNumbers);
     return (
-      <div className=" ContainerDetails">
+      <div>
+        <ContainerTabs
+          containerNumbers={containerNumbers}
+          switchContainer={this.switchContainer}
+        />
+        {/* <ContainerDetails
+          container={this.state.container}
+          onChange={this.onDataChange}
+          onSelectChange={this.onSelectChange}
+        /> */}
         <form>
-          <div className="row mb-3 ml-3">
-            <button
-              onClick={this.props.onUpdateContainer}
-              className="btn btn-md btn-outline-success mt-4"
-            >
-              Save Update
-            </button>
-            <button
-              onClick={this.onDeleteContainer}
-              className="btn btn-md btn-outline-danger mt-4 ml-2"
-            >
-              Delete
-            </button>
-          </div>
           <div className="row">
             <div className="col-lg-4">
               <Input
@@ -415,10 +671,9 @@ class Details extends Component {
                 <div className="col-md-4">
                   <Checkbox
                     inputtype="checkbox"
-                    type="checkbox"
                     checked={container.TMF}
                     name="TMF"
-                    onChange={this.onDataChange}
+                    onChange={this.onCheckboxChange}
                     label="TMF"
                   />
                 </div>
@@ -437,19 +692,17 @@ class Details extends Component {
 
               <Checkbox
                 inputtype="checkbox"
-                type="checkbox"
                 checked={container.nightGate}
                 name="nightGate"
-                onChange={this.onDataChange}
+                onChange={this.onCheckboxChange}
                 label="NightGate"
               />
 
               <Checkbox
                 inputtype="checkbox"
-                type="checkbox"
                 checked={container.prePull}
                 name="prePull"
-                onChange={this.onDataChange}
+                onChange={this.onCheckboxChange}
                 label="PrePull"
               />
 
@@ -457,10 +710,9 @@ class Details extends Component {
                 <div className="col-md-4">
                   <Checkbox
                     inputtype="checkbox"
-                    type="checkbox"
                     checked={container.yardStorage}
                     name="yardStorage"
-                    onChange={this.onDataChange}
+                    onChange={this.onCheckboxChange}
                     label="Yard Storage"
                   />
                 </div>
@@ -482,10 +734,9 @@ class Details extends Component {
                 <div className="col-md-4">
                   <Checkbox
                     inputtype="checkbox"
-                    type="checkbox"
                     checked={container.advanceExamFee}
                     name="advanceExamFee"
-                    onChange={this.onDataChange}
+                    onChange={this.onCheckboxChange}
                     label="Exam Fee"
                   />
                 </div>
@@ -505,10 +756,9 @@ class Details extends Component {
                 <div className="col-md-4">
                   <Checkbox
                     inputtype="checkbox"
-                    type="checkbox"
                     checked={container.advanceDemurrage}
                     name="advanceDemurrage"
-                    onChange={this.onDataChange}
+                    onChange={this.onDatonCheckboxChangeaChange}
                     label="Demurrage"
                   />
                 </div>
@@ -528,10 +778,9 @@ class Details extends Component {
                 <div className="col-md-4">
                   <Checkbox
                     inputtype="checkbox"
-                    type="checkbox"
                     checked={container.advancePerDiem}
                     name="advancePerDiem"
-                    onChange={this.onDataChange}
+                    onChange={this.onCheckboxChange}
                     label="Per Diem"
                   />
                 </div>
@@ -551,10 +800,9 @@ class Details extends Component {
                 <div className="col-md-4">
                   <Checkbox
                     inputtype="checkbox"
-                    type="checkbox"
                     checked={container.advanceDocsFee}
                     name="advanceDocsFee"
-                    onChange={this.onDataChange}
+                    onChange={this.onCheckboxChange}
                     label="Docs Fee"
                   />
                 </div>
@@ -681,15 +929,17 @@ class Details extends Component {
 Details.propTypes = {
   updateContainer: PropTypes.func.isRequired,
   deleteContainer: PropTypes.func.isRequired,
+  saveContainerToState: PropTypes.func.isRequired,
   container: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   errors: state.errros,
-  deliveryOrder: state.deliveryOrder
+  deliveryOrder: state.deliveryOrder,
+  containers: state.deliveryOrder.containers
 });
 
 export default connect(
   mapStateToProps,
-  { updateContainer, deleteContainer }
+  { updateContainer, deleteContainer, saveContainerToState }
 )(Details);
