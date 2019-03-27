@@ -1,4 +1,49 @@
-img {
+.header {
+  height: 500px;
+  background: url(./img/3d-cube.png), linear-gradient(to left, #2980b9, #88335a) !important;
+  margin-bottom: 2em;
+  width: 100%;
+}
+.NavBar {
+  background: url(./img/3d-cube.png), linear-gradient(to left, #2980b9, #88335a) !important;
+}
+
+.DropdownMenu {
+  background: rgb(236, 227, 227, 0.8);
+  color: white;
+  border: none;
+}
+.DropdownItem {
+  color: #272525;
+  font-weight: 500;
+}
+.DropdownItem:hover {
+  background: rgba(36, 35, 35, 0.4);
+  color: rgb(240, 227, 227);
+}
+
+.Tracking {
+  color: white;
+}
+.Tracking-input {
+  padding: 5px 5px 5px 10px;
+  background: white;
+  border-radius: 3px;
+}
+
+.Tracking input {
+  border: white;
+}
+.Tracking input:focus {
+  box-shadow: none;
+  outline: none;
+}
+.Tracking button {
+  background: #e14250;
+  color: white;
+  padding: 0;
+}
+.img {
   width: 100%;
 }
 
@@ -61,7 +106,7 @@ img {
 }
 
 .navigation {
-  background-color: #c1043d;
+  background-color: transparent;
 }
 
 .EmailList {
@@ -252,4 +297,10 @@ img {
   border-width: 2px 2px 0 2px;
   border-top-right-radius: 0.4em;
   color: white;
+}
+
+@media (max-width: 800px) {
+  .hidden-xs {
+    display: none;
+  }
 }

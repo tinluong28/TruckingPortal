@@ -10,6 +10,7 @@ import store from "./store";
 import PrivateRoute from "./components/common/PrivateRoute";
 
 import FileSearch from "./components/HomePage/FileSearch/FileSearch";
+import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
@@ -60,6 +61,9 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
           <Navbar />
+
+          <Header />
+
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
           <div>
