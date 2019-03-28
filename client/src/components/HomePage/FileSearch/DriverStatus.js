@@ -8,31 +8,31 @@ const driverStatus = () => {
       <table class="table table-hover table-dark">
         <thead>
           <tr>
-            <th scope="col">Vehicle</th>
+            <th scope="col">Type</th>
             <th scope="col">Driver</th>
             <th scope="col">Destination</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">8FDE976</th>
-            <td>Mark</td>
+            <th scope="row">Mark</th>
             <td>Ontario</td>
+            <td>Delivery</td>
           </tr>
           <tr>
-            <th scope="row">7ADE907</th>
-            <td>Jacob</td>
+            <th scope="row">Jacob</th>
             <td>Long Beach</td>
+            <td>Return</td>
           </tr>
           <tr>
-            <th scope="row">7DER215</th>
-            <td>Francisco</td>
+            <th scope="row">Francisco</th>
             <td>APM TERM</td>
+            <td>Pick-up</td>
           </tr>
           <tr>
-            <th scope="row">7AND298</th>
-            <td>Robert</td>
+            <th scope="row">Robert</th>
             <td>City of Industry</td>
+            <td>Delivery</td>
           </tr>
         </tbody>
       </table>

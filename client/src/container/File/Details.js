@@ -517,7 +517,10 @@ class Details extends Component {
     );
     console.log(containerNumbers);
     return (
-      <div>
+      <div
+        style={{ borderTopColor: "#c1046b", borderTopWidth: "4px" }}
+        className="card card-body mb-3 shadow p-3 mb-5 bg-white rounded"
+      >
         <ContainerTabs
           containerNumbers={containerNumbers}
           switchContainer={this.switchContainer}
@@ -527,6 +530,7 @@ class Details extends Component {
           onChange={this.onDataChange}
           onSelectChange={this.onSelectChange}
         /> */}
+
         <form>
           <div className="row">
             <div className="col-lg-4">
