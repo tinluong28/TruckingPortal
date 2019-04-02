@@ -8,9 +8,9 @@ const driverStatus = () => {
       <table class="table table-hover table-dark">
         <thead>
           <tr>
-            <th scope="col">Type</th>
             <th scope="col">Driver</th>
             <th scope="col">Destination</th>
+            <th scope="col">Type</th>
           </tr>
         </thead>
         <tbody>

@@ -186,7 +186,13 @@ class DeliveryOrder extends Component {
       addContainerNumber: ""
     });
   };
-
+  saveFile = () => {
+    const { containers } = this.props;
+    const fileData = this.state.file;
+    if (!fileData._id) {
+      this.props.addFile(fileData);
+    }
+  };
   containerInputHandler = value => {
     this.setState({
       addContainerNumber: value
@@ -281,10 +287,10 @@ class DeliveryOrder extends Component {
                 Cancel
               </button>
               <button
-                // onClick={props.setDone}
+                onClick={() => this.saveFile()}
                 className="btn btn-primary ml-3"
               >
-                Save
+                Save File
               </button>
             </div>
           </div>
@@ -395,11 +401,13 @@ DeliveryOrder.propTypes = {
   updateContainer: PropTypes.func.isRequired,
   deleteContainer: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  deliveryOrder: PropTypes.object.isRequired
+  deliveryOrder: PropTypes.object.isRequired,
+  container: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   deliveryOrder: state.deliveryOrder,
+  containers: state.deliveryOrder.containers,
   errors: state.errors,
   auth: state.auth
 });

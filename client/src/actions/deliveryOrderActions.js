@@ -30,7 +30,7 @@ export const getCurrentFile = id => dispatch => {
     );
 };
 
-//Update customer
+//Update file
 export const updateCurrentFile = (id, updatedData) => dispatch => {
   dispatch(setFileLoading());
   axios
@@ -69,10 +69,29 @@ export const updateCurrentFile = (id, updatedData) => dispatch => {
 // };
 
 // Create Customer
+
 export const addFile = (fileData, history) => dispatch => {
   if (window.confirm("Saving New File. Please Confirm!")) {
     axios
       .post("/api/file", fileData)
+      // after _id is issued, add individual container using promise
+      // .then(res => {
+      //   if (containerData) {
+      //     containerData
+      //       .map(container => {
+      //         axios.post(`/api/file/add-container/${res.data._id}`, container);
+      //       })
+      //       .then(res => history.push(`/file/view/${res.data._id}`))
+      //       .catch(err =>
+      //         dispatch({
+      //           type: GET_ERRORS,
+      //           payload: err.response.data
+      //         })
+      //       );
+      //   } else {
+      //     history.push(`/file/view/${res.data._id}`);
+      //   }
+      // })
       .then(res => history.push(`/file/view/${res.data._id}`))
       .catch(err =>
         dispatch({

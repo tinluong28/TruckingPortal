@@ -6,10 +6,10 @@ const express = require("express"),
 const validateDeliveryOrderInput = require("../../validation/deliveryOrder");
 const validateContainerInput = require("../../validation/containerDetails");
 
-// Load Customer model
+// Load file model
 const DeliveryOrder = require("../../models/DeliveryOrder");
 
-// Route GET api/customer/test
+// Route GET api/file/test
 // Desc     Test profile route
 // Access   Public
 router.get("/test", (req, res) => {
@@ -59,8 +59,8 @@ router.get(
 //     );
 // });
 
-// Route GET api/customers/:customer_id
-// Desc     Get/edit customer by customer ID
+// Route GET api/file/:file_id
+// Desc     Get/edit file by file ID
 // Access   Private
 router.get(
   "/:id",
@@ -81,8 +81,8 @@ router.get(
   }
 );
 
-// Route PUT api/customers/:id
-// Desc     Update customer
+// Route PUT api/file/:id
+// Desc     Update file
 // Access   Private
 router.put(
   "/:id",
@@ -98,13 +98,13 @@ router.put(
           res
             .status(404)
             .json({ deliveryOrder: "Update unsuccessful. Please try again" })
-        // res.redirect("/customers/" + req.params.id)
+        // res.redirect("/file/" + req.params.id)
       );
   }
 );
 
-// Route POST api/customers
-// Desc     Create customer
+// Route POST api/file
+// Desc     Create file
 // Access   Private
 router.post(
   "/",
