@@ -186,7 +186,7 @@ export const updateDeliveryToState = data => dispatch => {
     payload: data
   });
 };
-// Get ID of current delivery
+// Get ID of current delivery order
 export const getID = id => dispatch => {
   dispatch({
     type: GET_ID,
