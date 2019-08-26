@@ -47,7 +47,7 @@ if (localStorage.jwtToken) {
     // Clear currnt file
     store.dispatch(clearCurrentProfile());
     // Redirect to login
-    window.location.href = "/login";
+    window.location.href = "/";
   }
 }
 
@@ -62,8 +62,8 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Header />
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/login" component={Login} />
+          {/* <Route exact path="/" component={Landing} /> */}
+          <Route exact path="/" component={Login} />
           <div>
             <Route exact path="/profiles" component={Profiles} />
             <Switch>
