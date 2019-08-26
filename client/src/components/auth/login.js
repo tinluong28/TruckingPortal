@@ -56,8 +56,13 @@ class Login extends Component {
               <div className="col-md-5 m-auto">
                 <h1 className="display-4 text-center">Login</h1>
                 <p className="lead text-center">
-                  Sign in to your Trucking Portal account
+                  Welcome to the Trucking Portal! This is a demo app.
                 </p>
+                <p className="text-center p-0 m-0">
+                  Please use below to login:
+                </p>
+                <p className="text-center p-0 m-0">Email: John@hotmail.com</p>
+                <p className="text-center p-0 m-0">Password: 123456</p>
                 <form onSubmit={this.onSubmit}>
                   <TextFieldGroup
                     placeholder="Email Address"
