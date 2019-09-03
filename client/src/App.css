@@ -95,7 +95,7 @@
 
 .login {
   position: relative;
-  background-image: url("./img/port.jpg") no-repeat;
+  background: url("./img/port.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
