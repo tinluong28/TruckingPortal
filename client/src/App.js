@@ -6,9 +6,7 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { clearCurrentProfile } from "./actions/profileActions";
 import { Provider } from "react-redux";
 import store from "./store";
-
 import PrivateRoute from "./components/common/PrivateRoute";
-
 import FileSearch from "./components/HomePage/FileSearch/FileSearch";
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
