@@ -37,7 +37,7 @@ app.use("/api/delivery", delivery);
 app.use("/api/file", deliveryOrder);
 
 // Server static assets if in production
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV == "production") {
   // Set static folder
   app.use(express.static("client/build"));
 
