@@ -18,7 +18,7 @@ const tracking = () => {
                   aria-label="Enter shipment number"
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-sm" type="submit">
+                  <button className="btn btn-sm">
                     <span className="row">
                       <i className="fa fa-binoculars">
                         <span className="hidden-xs"> Track Shipment</span>
